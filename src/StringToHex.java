@@ -1,5 +1,3 @@
-package src;
-
 /**
  * @author hiYuzu
  * @version V1.0

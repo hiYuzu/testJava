@@ -1,5 +1,3 @@
-package src;
-
 import sun.misc.BASE64Encoder;
 
 import java.security.MessageDigest;
