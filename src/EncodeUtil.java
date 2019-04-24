@@ -8,7 +8,7 @@ import java.security.MessageDigest;
  * @author hiYuzu
  * @version V1.0
  * </p>
- * @description 编码类(SHA-1加密)
+ * @description 编码类(SHA - 1加密)
  * @date 2018/12/4 15:25
  */
 public class EncodeUtil {
@@ -28,5 +28,13 @@ public class EncodeUtil {
             stringBuffer.append(Integer.toHexString(0xff & resultCode[i]));
         }
         return stringBuffer.toString();
+    }
+
+    public static void main(String[] args) {
+        try {
+            System.out.println(encode("admin123"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

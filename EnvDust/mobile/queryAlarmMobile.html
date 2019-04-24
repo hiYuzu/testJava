@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>预警分析统计</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+    <link rel="stylesheet" href="../btzero_7_Director/js/plugins/bootstrap3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../btzero_7_Director/js/plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../btzero_7_Director/js/plugins/Ionicons/ionicons.min.css">
+    <link rel="stylesheet" href="../btzero_7_Director/js/plugins/adminlte/AdminLTE.min.css">
+    <link rel="stylesheet" href="../btzero_7_Director/js/plugins/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="../btzero_7_Director/js/plugins/bootstrap-dataTables/bootstrap-table.min.css">
+    <link href="../btzero_7_Director/js/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css"
+          rel="stylesheet"
+          media="screen">
+    <link rel="stylesheet" href="../btzero_7_Director/css/commonStyle.css">
+    <!-- Google Font -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<section class="content-header" >
+    <i class="fa fa-gear"></i>
+    <span>预警分析统计</span>
+</section>
+<form role="form" class="form-inline" style="padding-top: 9px;padding-bottom: 0px">
+    <div class="form-group">
+        <label class="control-label" style="font-size: 15px;">&emsp;&emsp;开始时间：</label>
+        <input type="text" id="timePicker1" class="form_datetime form-control"
+               style="height: 30px;" readonly required>
+        <label class="control-label" style="font-size: 15px;">结束时间：</label>
+        <input type="text" id="timePicker2" class="form_datetime form-control"
+               style="height: 30px;" readonly required>&emsp;
+        <label class="control-label" style="font-size: 15px;">&emsp;&emsp;类型：</label>
+        <select id="updateType" class="form-control select2-hidden-accessible"
+                style="width: 150px;"
+                tabindex="-1" aria-hidden="true">
+            <option>实时数据</option>
+            <option>分钟数据</option>
+            <option>小时数据</option>
+            <option>每日数据</option>
+        </select>
+        <label class="control-label" style="font-size: 15px;">&emsp;&emsp;指标：</label>
+        <select id="thingName" class="form-control select2-hidden-accessible"
+                style="width: 155px;"
+                tabindex="-1" aria-hidden="true">
+        </select>
+        <label class="control-label" style="font-size: 15px;">&emsp;&emsp;点位：</label>
+        <select id="bottomArea" class="form-control select2-hidden-accessible"
+                style="width: 155px;"
+                tabindex="-1" aria-hidden="true">
+        </select>
+        <select id="deviceName" class="form-control select2-hidden-accessible"
+                style="width: 155px;"
+                tabindex="-1" aria-hidden="true">
+        </select>
+        <button type="button" class="fa fa-search btn btn-info" id="searchBtn2"
+                style="height: 30px;" onclick="btnClick()">查询
+        </button>
+    </div>
+</form>
+<section class="content">
+    <div class="row">
+        <section class="col-lg-12 connectedSortable">
+            <div class="box box-primary" id="alarmBox">
+                <div class="box-header with-border" style="height: 45px;">
+                    <i class="fa fa-bar-chart-o"></i>
+                    <h3 class="box-title">
+                        报警数据
+                    </h3>
+                </div>
+                <div class="box-body no-padding">
+                    <table class="table table-striped" id="alarmDetailsTable"></table>
+                </div>
+            </div><!-- /.box -->
+        </section>
+    </div>
+</section>
+</body>
+<script src=../btzero_7_Director/js/plugins/jQuery/jquery-3.3.1.min.js></script>
+<script src="../btzero_7_Director/js/plugins/bootstrap3.3.7/bootstrap.min.js"></script>
+<script src="../btzero_7_Director/js/plugins/adminlte/adminlte.min.js"></script>
+<script src="../btzero_7_Director/js/plugins/bootstrap-dataTables/bootstrap-table.min.js"></script>
+<script src="../btzero_7_Director/js/plugins/bootstrap-dataTables/bootstrap-table-zh-CN.js"></script>
+<script src="../btzero_7_Director/js/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
+<script src="../btzero_7_Director/js/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="../btzero_7_Director/js/mobile/queryAlarm.js"></script>
+<script>
+    $(".form_datetime").datetimepicker({
+        format: 'yyyy-mm-dd',
+        language: 'zh-CN',
+        autoclose: true,
+        startView: 2,
+        minView: 2,
+        forceParse: false
+    });
+</script>
+</html>
