@@ -32,7 +32,7 @@ public class EncodeUtil {
 
     public static void main(String[] args) {
         try {
-            System.out.println(encode("admin123"));
+            System.out.println(encode("admin3.14159265358979323846264338327950288419716939937510"));
         } catch (Exception e) {
             e.printStackTrace();
         }
