@@ -1,3 +1,5 @@
+package threadPoolTest;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.*;
@@ -15,9 +17,6 @@ public class IoThreadPoolTest {
 
     private static List<Callable<Object>> tasks;
 
-    /**
-     * 仍然是5000个任务
-     */
     private static final int TASK_NUM = 5000;
 
     static {

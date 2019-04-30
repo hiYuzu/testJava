@@ -1,3 +1,5 @@
+package threadPoolTest;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.*;
@@ -29,7 +31,6 @@ public class ComputeThreadPoolTest {
     }
 
     static class ComputeTask implements Callable<Long> {
-
         final int COUNT = 500000;
 
         /**
@@ -84,7 +85,7 @@ public class ComputeThreadPoolTest {
             // cpu rest
             TimeUnit.SECONDS.sleep(1);
             if (i + 1 == AVG_TIMES) {
-                System.out.println("avg time = " + sum/AVG_TIMES);
+                System.out.println("avg time = " + sum / AVG_TIMES);
             }
         }
     }
