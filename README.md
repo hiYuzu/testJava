@@ -1,3 +1,2 @@
 # testJava
-
-simple java util
+learning
