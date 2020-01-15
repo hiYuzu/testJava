@@ -27,7 +27,6 @@ public class IoThreadPoolTest {
     }
 
     static class IoTask implements Runnable {
-
         @Override
         public void run() {
             try {
@@ -48,8 +47,7 @@ public class IoThreadPoolTest {
         cachedThreadPool.shutdown();
     }
 
-    private static void testExecutor(ExecutorService executor, List<Callable<Object>> tasks)
-            throws InterruptedException {
+    private static void testExecutor(ExecutorService executor, List<Callable<Object>> tasks) throws InterruptedException {
         long start = System.currentTimeMillis();
         executor.invokeAll(tasks);
         long end = System.currentTimeMillis();
