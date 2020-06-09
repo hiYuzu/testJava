@@ -23,7 +23,10 @@ public class SocketServer {
                 Socket socket = serverSocket.accept();
                 threadPoolExecutor.execute(new SingleServer(socket, clientNo));
                 clientNo++;
+                Thread.sleep(100);
             }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         } finally {
             serverSocket.close();
         }
