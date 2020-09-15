@@ -10,13 +10,13 @@ import java.io.*;
 public class MergeTxt {
     private static boolean isDone = true;
     public static void main(String[] args) throws IOException {
-        String path = "C:\\Users\\DELL\\Desktop\\万族之劫\\";
+        String path = "E:\\wzzj\\";
         String fileOut = "C:\\Users\\DELL\\Desktop\\wzzj.txt";
         BufferedWriter bw = new BufferedWriter(new FileWriter(fileOut));
         File pathFile = new File(path);
         File[] array = pathFile.listFiles();
         if (array != null) {
-            int[] chapterCount = new int[521];
+            int[] chapterCount = new int[9999];
             int i = 0;
             for (File anArray : array) {
                 if (anArray.exists()) {
