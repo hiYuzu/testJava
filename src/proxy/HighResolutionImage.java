@@ -13,7 +13,7 @@ public class HighResolutionImage implements Image {
     private int height;
     private int width;
 
-    public int getHeight() {
+    int getHeight() {
         return this.height;
     }
 
@@ -21,14 +21,14 @@ public class HighResolutionImage implements Image {
         return this.width;
     }
 
-    public HighResolutionImage(URL imageUrl) {
+    HighResolutionImage(URL imageUrl) {
         this.imageUrl = imageUrl;
         this.startTime = System.currentTimeMillis();
         this.height = 600;
         this.width = 600;
     }
 
-    public boolean isLoad() {
+    boolean isLoad() {
         // 模拟图片加载，延迟 3s 加载完成
         long endTime = System.currentTimeMillis();
         return endTime - startTime > 3000;

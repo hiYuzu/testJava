@@ -8,7 +8,7 @@ package proxy;
 public class ImageProxy implements Image {
     private HighResolutionImage highResolutionImage;
 
-    public ImageProxy(HighResolutionImage highResolutionImage) {
+    ImageProxy(HighResolutionImage highResolutionImage) {
         this.highResolutionImage = highResolutionImage;
     }
 
