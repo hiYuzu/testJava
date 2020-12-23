@@ -1,4 +1,5 @@
 package asyncTcp;
+
 import java.nio.ByteBuffer;
 import java.util.Iterator;
 import java.net.InetAddress;
@@ -16,78 +17,69 @@ import java.nio.channels.SocketChannel;
  */
 
 public class TcpAsyncServer {
-    /**
-     * 缓冲区大小
-     */
     private ByteBuffer buffer = ByteBuffer.allocate(1024);
     private Selector selector;
     private ServerSocketChannel channel;
+    private boolean listening = false;
 
     public static void main(String[] args) throws Exception {
         TcpAsyncServer tcpServer = new TcpAsyncServer();
         tcpServer.start();
     }
 
-    public void start() throws Exception {
-        //初始化一个Selector
+    private void start() throws Exception {
+        // 初始化一个Selector
         selector = Selector.open();
-        //打开通道
+        // 打开通道
         channel = ServerSocketChannel.open();
-        //非阻塞模式
+        // 非阻塞模式
         channel.configureBlocking(false);
         InetAddress ip = InetAddress.getLocalHost();
         System.out.println(ip.toString());
-        //绑定IP和端口
+        // 绑定IP和端口
         int port = 9527;
         InetSocketAddress address = new InetSocketAddress(ip, port);
         ServerSocket socket = channel.socket();
         socket.bind(address);
-        //启动监听
+        // 启动监听
         System.out.println("TCP服务器开始监听...");
+        listening = true;
         listen();
     }
 
-    /**
-     * 停止
-     * @throws Exception
-     */
     public void stop() throws Exception {
+        listening = false;
         channel.close();
         selector.close();
     }
 
-    /**
-     * 监听
-     * @throws Exception
-     */
     private void listen() throws Exception {
-        /*注册接收事件*/
-        channel.register(selector,SelectionKey.OP_ACCEPT);
-        /*无限循环*/
-        while (true) {
+        // 注册接收事件
+        channel.register(selector, SelectionKey.OP_ACCEPT);
+        // 无限循环
+        while (listening) {
             selector.select();
-            /*轮询事件*/
+            // 轮询事件
             Iterator iterator = selector.selectedKeys().iterator();
             while (iterator.hasNext()) {
-                SelectionKey key =  (SelectionKey)iterator.next();
+                SelectionKey key = (SelectionKey) iterator.next();
                 iterator.remove();
-                /*事件分类处理*/
+                // 事件分类处理
                 if (key.isAcceptable()) {
-                    ServerSocketChannel ssc = (ServerSocketChannel)key.channel();
+                    ServerSocketChannel ssc = (ServerSocketChannel) key.channel();
                     SocketChannel sc = ssc.accept();
                     sc.configureBlocking(false);
                     sc.register(selector, SelectionKey.OP_READ);
-                    System.out.println("新终端已连接:"+ sc.getRemoteAddress());
-                }
-                else if (key.isReadable()) {
-                    SocketChannel sc = (SocketChannel)key.channel();
+                    System.out.println("新终端已连接:" + sc.getRemoteAddress());
+                } else if (key.isReadable()) {
+                    SocketChannel sc = (SocketChannel) key.channel();
                     int recvCount = sc.read(buffer);
                     if (recvCount > 0) {
                         byte[] arr = buffer.array();
-                        System.out.println(sc.getRemoteAddress() + "发来数据: "+ new String(arr));
+                        sc.write(buffer);
+                        System.out.println(sc.getRemoteAddress() + "发来数据: " + new String(arr));
                         buffer.flip();
-                    }
-                    else {
+                    } else {
                         sc.close();
                     }
                     buffer.clear();
