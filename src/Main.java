@@ -1,3 +1,6 @@
+import java.nio.file.Files;
+import java.util.*;
+
 /**
  * 主类，用于测试简单的Java程序
  *
@@ -7,6 +10,6 @@
  */
 public class Main {
     public static void main(String[] args) {
-        System.out.println(EncodeUtil.myDecode("XuULYOYp]tYThKQpj\\oOhskyU^X;]OYS[Lj7YNQSk:PD", 7));
+        System.out.println(System.getProperty("user.dir"));
     }
 }

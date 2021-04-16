@@ -10,8 +10,8 @@ import java.io.*;
 public class MergeTxt {
     private static boolean isDone = true;
     public static void main(String[] args) throws IOException {
-        String path = "C:\\Users\\DELL\\Desktop\\wxkb\\";
-        String fileOut = "C:\\Users\\DELL\\Desktop\\wxkb.txt";
+        String path = "D:\\Pomelo\\Desktop\\ynyh\\";
+        String fileOut = "D:\\Pomelo\\Desktop\\ynyh.txt";
         BufferedWriter bw = new BufferedWriter(new FileWriter(fileOut));
         File pathFile = new File(path);
         File[] array = pathFile.listFiles();
