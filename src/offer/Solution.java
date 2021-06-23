@@ -237,6 +237,51 @@ public class Solution {
         //TODO..
         return 0;
     }
+
+    /**
+     * 题目描述
+     * 输入数字 n，按顺序打印出从 1 到最大的 n 位十进制数。比如输入 3，则打印出 1、2、3 一直到最大的 3 位数即 999。
+     *
+     * @param n 输入数字 n
+     */
+    public void print1ToMaxOfDigits(int n) {
+        if (n <= 0) {
+            return;
+        }
+        // number 长度位位数，通过循环使其存有需要打印的数字
+        char[] number = new char[n];
+        print1ToMaxOfDigits(number, 0);
+    }
+    public void print1ToMaxOfDigits(char[] number, int digit) {
+        // 除了第一位，每一位都是 0 - 9
+        final int figures = 10;
+        // 保证 number 非空，即每一位都有数字
+        if (digit == number.length) {
+            // 打印一个数字
+            printNumber(number);
+            return;
+        }
+        for (int i = 0; i < figures; i++) {
+            // '0' 转 int 为 48，在 ASCII 中十进制 49 至 57 对应字符 1 至 9
+            // (char) (1 + '0') 可以认为是 (char) (1 + 48) -> (char) (49) -> '1'
+            number[digit] = (char) (i + '0');
+            print1ToMaxOfDigits(number, digit + 1);
+        }
+    }
+    public void printNumber(char[] number) {
+        // 需要打印的位，先高位后低位
+        int index = 0;
+        // 防止最高位出现 '0'
+        while (index < number.length && number[index] == '0') {
+            index++;
+        }
+        // 打印，每次循环打印一位，由高到低
+        while (index < number.length) {
+            System.out.print(number[index++]);
+        }
+        System.out.println();
+    }
+
     public static void main(String[] args) {
         Solution solution = new Solution();
     }

@@ -1,5 +1,3 @@
-import java.nio.file.Files;
-import java.util.*;
 
 /**
  * 主类，用于测试简单的Java程序
