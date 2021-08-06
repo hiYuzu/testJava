@@ -1,3 +1,4 @@
+import org.apache.commons.codec.binary.Hex;
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
@@ -33,6 +34,7 @@ public class EncodeUtil {
 
     /**
      * base64编码
+     *
      * @param code
      * @return
      */
@@ -50,6 +52,7 @@ public class EncodeUtil {
 
     /**
      * base64译码
+     *
      * @param code
      * @return
      */
@@ -66,20 +69,18 @@ public class EncodeUtil {
 
     /**
      * 字符串转ASCII
+     *
      * @param value
      * @return
      */
-    public static String stringToAscii(String value)
-    {
+    public static String stringToAscii(String value) {
         StringBuffer sbu = new StringBuffer();
         char[] chars = value.toCharArray();
         for (int i = 0; i < chars.length; i++) {
-            if(i != chars.length - 1)
-            {
-                sbu.append((int)chars[i]).append(",");
-            }
-            else {
-                sbu.append((int)chars[i]);
+            if (i != chars.length - 1) {
+                sbu.append((int) chars[i]).append(",");
+            } else {
+                sbu.append((int) chars[i]);
             }
         }
         return sbu.toString();
@@ -87,6 +88,7 @@ public class EncodeUtil {
 
     /**
      * ASCII加密并转为字符串
+     *
      * @param ascii
      * @param num
      * @return
@@ -103,6 +105,7 @@ public class EncodeUtil {
 
     /**
      * ASCII解密并转为字符串
+     *
      * @param ascii
      * @param num
      * @return
@@ -119,6 +122,7 @@ public class EncodeUtil {
 
     /**
      * 自写加密
+     *
      * @param code
      * @param num
      * @return
@@ -138,6 +142,7 @@ public class EncodeUtil {
 
     /**
      * 自写解密
+     *
      * @param code
      * @param num
      * @return
@@ -153,5 +158,18 @@ public class EncodeUtil {
             e.printStackTrace();
         }
         return result;
+    }
+
+    /**
+     * sinosoft 加密
+     * @param password
+     * @return
+     * @throws Exception
+     */
+    public static String encrypt(String password) throws Exception {
+        String pwd = password + "{passwordEncode}";
+        MessageDigest digest = MessageDigest.getInstance("MD5");
+        byte[] hash = digest.digest(pwd.getBytes("UTF-8"));
+        return Hex.encodeHexString(hash);
     }
 }
