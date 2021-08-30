@@ -124,7 +124,7 @@ public class GetPicUtil {
                 String imageName = url.substring(url.lastIndexOf("/") + 1, url.length());
                 URL uri = new URL(url);
                 InputStream in = uri.openStream();
-                String dir = "E:\\MyIntelliJWorkspaces\\GitRepository\\testJava\\file\\" + imageName;
+                String dir = "E:\\JavaProject\\testJava\\out\\" + imageName;
                 FileOutputStream fo = new FileOutputStream(new File(dir));
                 byte[] buf = new byte[1024];
                 int length = 0;

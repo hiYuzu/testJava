@@ -29,6 +29,7 @@ public class IdCardVerify {
         if (LAST_CODE_ARR[sum % MOD_VALUE] != idCard.charAt(CARD_LENGTH - 1)) {
             throw new IdCardException("IdCardException：身份证验证失败！");
         }
+        System.out.println("验证通过！");
     }
 
     private static int[] parseCharArrToIntArr(char[] charArr) {
