@@ -21,14 +21,15 @@ public class JavaRobot {
     public static void main(String[] args) {
         try {
             robot = new Robot();
-
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
+        // FIRST STEP
         robot.mouseMove(700,400);
         robot.delay(20);
-        robot.mousePress(InputEvent.BUTTON1_MASK);
+        // SECOND STEP
+        robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
         robot.delay(20);
-        robot.mouseRelease(InputEvent.BUTTON1_MASK);
+        robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
     }
 }

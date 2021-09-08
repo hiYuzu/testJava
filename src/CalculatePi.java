@@ -82,7 +82,7 @@ public class CalculatePi {
             deviation = (deviation.add(value.divide(deviation, mc))).divide(num2, mc);
             count++;
         }
-        deviation = deviation.setScale(scaleAndPrecision, BigDecimal.ROUND_HALF_UP);
+        deviation = deviation.setScale(scaleAndPrecision, RoundingMode.HALF_UP);
         return deviation;
     }
 

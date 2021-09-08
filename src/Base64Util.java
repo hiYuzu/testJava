@@ -1,27 +1,27 @@
-import sun.misc.BASE64Decoder;
-import sun.misc.BASE64Encoder;
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+import java.util.Base64;
 
 /**
- * <p>
+ * Base64 工具
  *
  * @author hiYuzu
  * @version V1.0
- * </p>
- * @description base64编译码
  * @date 2018/12/4 16:26
  */
 public class Base64Util {
     /**
      * 编码
-     * @param code
-     * @return
+     * @param code 原文
+     * @return 密文
      */
     public static String base64Encode(String code) {
         String result = null;
         try {
-            byte[] byteArrayCode = code.getBytes("utf-8");
-            BASE64Encoder encoder = new BASE64Encoder();
-            result = encoder.encode(byteArrayCode);
+            byte[] byteArrayCode = code.getBytes(StandardCharsets.UTF_8);
+            Base64.Encoder encoder = Base64.getEncoder();
+            byte[] bytes = encoder.encode(byteArrayCode);
+            result = Arrays.toString(bytes);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -30,14 +30,14 @@ public class Base64Util {
 
     /**
      * 译码
-     * @param code
-     * @return
+     * @param code 密文
+     * @return 原文
      */
     public static String base64Decode(String code) {
         String result = null;
         try {
-            BASE64Decoder decoder = new BASE64Decoder();
-            result = new String(decoder.decodeBuffer(code), "utf-8");
+            Base64.Decoder decoder = Base64.getDecoder();
+            result = new String(decoder.decode(code), StandardCharsets.UTF_8);
         } catch (Exception e) {
             e.printStackTrace();
         }

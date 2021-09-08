@@ -28,11 +28,11 @@ public class WangBa {
 
         Thread ti = new Thread(mp);
         ti.start();
-        w.show();
+        w.setVisible(true);
     }
 }
 
-class Mypan extends JPanel implements Runnable, MouseListener, MouseMotionListener, KeyListener {//这里要设置监听
+class Mypan extends JPanel implements Runnable, MouseListener, MouseMotionListener, KeyListener { // 这里要设置监听
     //乌龟的初始坐标
     int x = 300;
     int y = 100;
