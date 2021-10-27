@@ -24,6 +24,9 @@ public class Fight {
     private int bWinTimes = 0;
     private int peaceTimes =0;
 
+    // 死亡回击
+    private boolean deadAttack = true;
+
     private final Random random = new Random();
 
     public Fight() {
@@ -37,11 +40,12 @@ public class Fight {
      * @param bloodB B 血量
      * @param battleTimes 测试次数
      */
-    public Fight(boolean aFirst, double bloodA, double bloodB, int battleTimes) {
+    public Fight(boolean aFirst, double bloodA, double bloodB, int battleTimes, boolean deadAttack) {
         this.aFirst = aFirst;
         this.bloodA = bloodA;
         this.bloodB = bloodB;
         this.battleTimes = battleTimes;
+        this.deadAttack = deadAttack;
     }
 
     public void startBattle() {
@@ -55,14 +59,22 @@ public class Fight {
                 while (bloodA > 0 && bloodB > 0) {
                     System.out.println("Round " + roundCount);
                     aAttackB();
-                    bAttackA();
+                    if (bloodB > 0) {
+                        bAttackA();
+                    } else if (deadAttack) {
+                        bAttackA();
+                    }
                     roundCount++;
                 }
             } else {
                 while (bloodA > 0 && bloodB > 0) {
                     System.out.println("Round " + roundCount);
                     bAttackA();
-                    aAttackB();
+                    if (bloodA > 0) {
+                        aAttackB();
+                    } else if (deadAttack) {
+                        aAttackB();
+                    }
                     roundCount++;
                 }
             }
