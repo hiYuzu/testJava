@@ -1,4 +1,4 @@
-package org.jeecg.modules.demo.panorama.util;
+package threadPoolTest;
 
 import java.util.concurrent.*;
 
@@ -11,15 +11,26 @@ public class ThreadPoolUtil<T> {
     /**
      * 使用无限线程数的CacheThreadPool线程池
      */
-    private static final ExecutorService CACHED_THREAD_POOL = Executors.newCachedThreadPool();
+    private static final ThreadPoolExecutor CACHED_THREAD_POOL = (ThreadPoolExecutor) Executors.newCachedThreadPool();
 
-    public static <T> T executor(Callable<T> callable) {
+    public static <T> Future<T> executor(Callable<T> callable) {
+        return CACHED_THREAD_POOL.submit(callable);
+    }
+
+    public static <T> T executor(Callable<T> callable, Class<T> clazz) {
+        Future<T> future = CACHED_THREAD_POOL.submit(callable);
         try {
-            Future<T> future = CACHED_THREAD_POOL.submit(callable);
             return future.get();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+        } catch (Exception e1) {
+            try {
+                e1.printStackTrace();
+                return clazz.getDeclaredConstructor().newInstance();
+            } catch (Exception e2) {
+                e2.printStackTrace();
+                return null;
+            }
+
         }
+
     }
 }
