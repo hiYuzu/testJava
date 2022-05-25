@@ -15,7 +15,7 @@ public class MyQrCodeUtil {
         System.out.println(content);
         QrConfig config = new QrConfig(300, 300);
         config.setMargin(1);
-        QrCodeUtil.generate(content, config, FileUtil.file("E:/qrcode.jpg"));
+        QrCodeUtil.generate(content, config, FileUtil.file("D:/qrcode.jpg"));
     }
     static class QrContent {
         private String url;
