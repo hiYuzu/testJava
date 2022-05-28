@@ -1,4 +1,3 @@
-import cn.hutool.core.lang.UUID;
 
 /**
  * 主类，用于测试简单的Java程序
@@ -9,8 +8,6 @@ import cn.hutool.core.lang.UUID;
  */
 public class Main {
     public static void main(String[] args) {
-        System.out.println(UUID.fastUUID());
-        System.out.println(UUID.fastUUID());
-        System.out.println(UUID.fastUUID());
     }
 }
+
