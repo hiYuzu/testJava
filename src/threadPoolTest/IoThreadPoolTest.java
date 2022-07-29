@@ -13,16 +13,16 @@ public class IoThreadPoolTest {
     /**
      * 使用无限线程数的CacheThreadPool线程池
      */
-    private static ThreadPoolExecutor cachedThreadPool = (ThreadPoolExecutor) Executors.newCachedThreadPool();
+    private static final ThreadPoolExecutor CACHED_THREAD_POOL = (ThreadPoolExecutor) Executors.newCachedThreadPool();
 
-    private static List<Callable<Object>> tasks;
+    private static final List<Callable<Object>> TASKS;
 
     private static final int TASK_NUM = 5000;
 
     static {
-        tasks = new ArrayList<>(TASK_NUM);
+        TASKS = new ArrayList<>(TASK_NUM);
         for (int i = 0; i < TASK_NUM; i++) {
-            tasks.add(Executors.callable(new IoTask()));
+            TASKS.add(Executors.callable(new IoTask()));
         }
     }
 
@@ -39,18 +39,19 @@ public class IoThreadPoolTest {
 
     public static void main(String[] args) throws InterruptedException {
         // warm up all thread
-        cachedThreadPool.invokeAll(tasks);
-        testExecutor(cachedThreadPool, tasks);
+        long start = System.currentTimeMillis();
+        CACHED_THREAD_POOL.invokeAll(TASKS);
+        System.out.println("warm up：" + (System.currentTimeMillis() - start));
+        testExecutor();
         // 看看执行过程中创建了多少个线程
-        int largestPoolSize = cachedThreadPool.getLargestPoolSize();
+        int largestPoolSize = CACHED_THREAD_POOL.getLargestPoolSize();
         System.out.println("largestPoolSize:" + largestPoolSize);
-        cachedThreadPool.shutdown();
+        CACHED_THREAD_POOL.shutdown();
     }
 
-    private static void testExecutor(ExecutorService executor, List<Callable<Object>> tasks) throws InterruptedException {
+    private static void testExecutor() throws InterruptedException {
         long start = System.currentTimeMillis();
-        executor.invokeAll(tasks);
-        long end = System.currentTimeMillis();
-        System.out.println(end - start);
+        CACHED_THREAD_POOL.invokeAll(TASKS);
+        System.out.println("invoke时间：" + (System.currentTimeMillis() - start));
     }
 }
