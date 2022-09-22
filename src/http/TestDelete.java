@@ -14,9 +14,9 @@ import java.nio.charset.StandardCharsets;
  *
  * @author hiYuzu
  * @version V1.0
- * @date 2022/9/22 14:18
+ * @date 2022/9/22 19:08
  */
-public class Test {
+public class TestDelete {
     public static void main(String[] args) throws Exception {
         // IP地址
         String ip = "188.1.128.218";
@@ -24,6 +24,8 @@ public class Test {
         String port = "8084";
         // 证件号码
         String identity = "370786199701155455";
+        // 分类
+        String fl = "90";
         // 授权码
         String auth = "jlf5ydoq-u7dh-olrp-n2mk-a8lrc8q3nfkw";
 
@@ -31,9 +33,9 @@ public class Test {
         BufferedReader buffer;
         StringBuilder resultBuilder;
         try {
-            URL url = new URL("http://"+ ip + ":" + port + "/history/openApi/appeal/getPersonInfo?identity=" + identity);
+            URL url = new URL("http://"+ ip + ":" + port + "/history/openApi/appeal/removePopup?identity=" + identity + "&fl=" + fl);
             con = (HttpURLConnection) url.openConnection();
-            con.setRequestMethod("GET");
+            con.setRequestMethod("DELETE");
             con.setRequestProperty("IIG-AUTH", auth);
             con.setDoOutput(true);
             con.setUseCaches(false);
