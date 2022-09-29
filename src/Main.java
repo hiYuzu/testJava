@@ -1,8 +1,7 @@
-import cn.hutool.core.thread.ThreadUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.util.*;
+import cn.hutool.http.HttpResponse;
+import cn.hutool.http.HttpUtil;
+import cn.hutool.json.JSONObject;
+import cn.hutool.json.JSONUtil;
 
 /**
  * @author hiYuzu
@@ -10,50 +9,24 @@ import java.util.*;
  * @date 2022/3/10 16:07
  */
 public class Main {
-    private static final Logger LOG = LoggerFactory.getLogger(Main.class);
     public static void main(String[] args) {
-        testArrayList();
-//        testVector();
+        String identity = "110101196511231519";
+        // 开始日期
+        String startDate = "2022-09-22";
+        // 分类
+        String fl = "15";
+        // 授权码
+        String auth = "jlf5ydoq-u7dh-olrp-n2mk-a8lrc8q3nfkw";
+        String url = "http://188.2.44.95:8085/openApi/getDetail?identity=" + identity + "&startDate=" + startDate + "&fl=" + fl;
+        try (HttpResponse response = HttpUtil.createGet(url).header("IIG-AUTH", auth).setConnectionTimeout(20000).execute()) {
+            String responseStr = response.body();
+            JSONObject jsonObject = JSONUtil.parseObj(responseStr);
+            if ("200".equals(jsonObject.getStr("code"))) {
+                JSONObject data = jsonObject.getJSONObject("data");
+                System.out.println(JSONUtil.toJsonPrettyStr(data));
+            }
+        }
     }
 
-    private static void testArrayList() {
-        System.out.println("start");
-        List<Integer> list = new ArrayList<>();
-        for (int i = 0; i < 100000; i++) {
-            list.add(i);
-        }
-        ThreadUtil.execute(() -> {
-            list.removeIf(one -> one >= 50000);
-            System.out.println("array1线程执行完毕。数据量：" + list.size());
-        });
-        ThreadUtil.execute(() -> {
-            list.removeIf(one -> one >= 50000);
-            System.out.println("array2线程执行完毕。数据量：" + list.size());
-        });
-        ThreadUtil.execute(() -> {
-            list.removeIf(one -> one >= 50000);
-            System.out.println("array3线程执行完毕。数据量：" + list.size());
-        });
-    }
-
-    private static void testVector() {
-        System.out.println("start");
-        List<Integer> list = new Vector<>();
-        for (int i = 0; i < 100000; i++) {
-            list.add(i);
-        }
-        ThreadUtil.execute(() -> {
-            list.removeIf(one -> one >= 50000);
-            System.out.println("vector1线程执行完毕。数据量：" + list.size());
-        });
-        ThreadUtil.execute(() -> {
-            list.removeIf(one -> one >= 50000);
-            System.out.println("vector2线程执行完毕。数据量：" + list.size());
-        });
-        ThreadUtil.execute(() -> {
-            list.removeIf(one -> one >= 50000);
-            System.out.println("vector3线程执行完毕。数据量：" + list.size());
-        });
-    }
 }
 

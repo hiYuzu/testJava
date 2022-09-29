@@ -8,7 +8,7 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
 /**
- * <p>接口请求测试</p>
+ * <p>HTTP DELETE接口请求测试</p>
  * <p>请将IP、端口、证件号码、授权码等替换为真实数据</p>
  * <p>JDK版本：1.8</p>
  *
@@ -23,9 +23,9 @@ public class TestDelete {
         // 端口
         String port = "8084";
         // 证件号码
-        String identity = "370786199701155455";
-        // 分类
-        String fl = "90";
+        String identity = "130435200204050921";
+        // 接口类型
+        String codeType = "popcode";
         // 授权码
         String auth = "jlf5ydoq-u7dh-olrp-n2mk-a8lrc8q3nfkw";
 
@@ -33,7 +33,7 @@ public class TestDelete {
         BufferedReader buffer;
         StringBuilder resultBuilder;
         try {
-            URL url = new URL("http://"+ ip + ":" + port + "/history/openApi/appeal/removePopup?identity=" + identity + "&fl=" + fl);
+            URL url = new URL("http://"+ ip + ":" + port + "/history/openApi/appeal/removePopup?identity=" + identity + "&codeType=" + codeType);
             con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod("DELETE");
             con.setRequestProperty("IIG-AUTH", auth);
