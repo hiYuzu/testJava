@@ -25,13 +25,13 @@ public class TestGet {
         // 授权码
         String auth = "jlf5ydoq-u7dh-olrp-n2mk-a8lrc8q3nfkw";
         // 查询类型
-        String codeType = "popcode";
+        String codeType = "encode";
         // 证件号码
-        String identity = "130435200406051826";
+        String identity = "130730198602032651";
         // 开始日期
-        String startDate = "2022-09-22";
+        String startDate = "2022-09-29";
         // 分类
-        String fl = "15";
+        String fl = "5";
 
         HttpURLConnection con;
         BufferedReader buffer;
@@ -39,8 +39,8 @@ public class TestGet {
         try {
             URL url = new URL("http://"+ ip + ":" + port + "/history/openApi/appeal/getPersonInfo?identity=" + identity + "&codeType=" + codeType);
             URL url2 = new URL("http://"+ ip + ":" + port + "/history/openApi/appeal/getDataDetail?identity=" + identity + "&fl=" + fl + "&startDate=" + startDate);
-            con = (HttpURLConnection) url.openConnection();
-//            con = (HttpURLConnection) url2.openConnection();
+//            con = (HttpURLConnection) url.openConnection();
+            con = (HttpURLConnection) url2.openConnection();
             con.setRequestMethod("GET");
             con.setRequestProperty("IIG-AUTH", auth);
             con.setDoOutput(true);
