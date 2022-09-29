@@ -23,8 +23,8 @@ public class TestDelete {
         // 端口
         String port = "8084";
         // 证件号码
-        String identity = "130435200204050921";
-        // 接口类型
+        String identity = "130435200406051826";
+        // 解除类型
         String codeType = "popcode";
         // 授权码
         String auth = "jlf5ydoq-u7dh-olrp-n2mk-a8lrc8q3nfkw";

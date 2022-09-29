@@ -22,12 +22,12 @@ public class TestGet {
         String ip = "188.1.128.218";
         // 端口
         String port = "8084";
-        // 证件号码
-        String identity = "110101196511231519";
-        // 接口类型
-        String codeType = "encode";
         // 授权码
         String auth = "jlf5ydoq-u7dh-olrp-n2mk-a8lrc8q3nfkw";
+        // 查询类型
+        String codeType = "popcode";
+        // 证件号码
+        String identity = "130435200406051826";
         // 开始日期
         String startDate = "2022-09-22";
         // 分类
@@ -37,10 +37,10 @@ public class TestGet {
         BufferedReader buffer;
         StringBuilder resultBuilder;
         try {
-//            URL url = new URL("http://"+ ip + ":" + port + "/history/openApi/appeal/getPersonInfo?identity=" + identity + "&codeType=" + codeType);
+            URL url = new URL("http://"+ ip + ":" + port + "/history/openApi/appeal/getPersonInfo?identity=" + identity + "&codeType=" + codeType);
             URL url2 = new URL("http://"+ ip + ":" + port + "/history/openApi/appeal/getDataDetail?identity=" + identity + "&fl=" + fl + "&startDate=" + startDate);
-//            con = (HttpURLConnection) url.openConnection();
-            con = (HttpURLConnection) url2.openConnection();
+            con = (HttpURLConnection) url.openConnection();
+//            con = (HttpURLConnection) url2.openConnection();
             con.setRequestMethod("GET");
             con.setRequestProperty("IIG-AUTH", auth);
             con.setDoOutput(true);
