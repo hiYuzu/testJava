@@ -3,6 +3,9 @@ import cn.hutool.http.HttpUtil;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * @author hiYuzu
  * @version V1.0
@@ -10,21 +13,16 @@ import cn.hutool.json.JSONUtil;
  */
 public class Main {
     public static void main(String[] args) {
-        String identity = "110101196511231519";
-        // 开始日期
-        String startDate = "2022-09-22";
-        // 分类
-        String fl = "15";
-        // 授权码
-        String auth = "jlf5ydoq-u7dh-olrp-n2mk-a8lrc8q3nfkw";
-        String url = "http://188.2.44.95:8085/openApi/getDetail?identity=" + identity + "&startDate=" + startDate + "&fl=" + fl;
-        try (HttpResponse response = HttpUtil.createGet(url).header("IIG-AUTH", auth).setConnectionTimeout(20000).execute()) {
-            String responseStr = response.body();
-            JSONObject jsonObject = JSONUtil.parseObj(responseStr);
-            if ("200".equals(jsonObject.getStr("code"))) {
-                JSONObject data = jsonObject.getJSONObject("data");
-                System.out.println(JSONUtil.toJsonPrettyStr(data));
-            }
+        String date = "2022-09-22";
+        String dateTime = date + " 00:00:00";
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        try {
+            Date agoDate = sdf.parse(dateTime);
+            Date nowDate = new Date();
+            int day = Math.abs((int) ((nowDate.getTime() - agoDate.getTime()) / (1000 * 3600 * 24)));
+            System.out.println(day);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
