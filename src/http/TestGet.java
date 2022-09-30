@@ -25,13 +25,13 @@ public class TestGet {
         // 授权码
         String auth = "jlf5ydoq-u7dh-olrp-n2mk-a8lrc8q3nfkw";
         // 查询类型
-        String codeType = "encode";
+        String codeType = "popcode";
         // 证件号码
-        String identity = "130730198602032651";
+        String identity = "130182200509253912";
         // 开始日期
         String startDate = "2022-09-29";
         // 分类
-        String fl = "5";
+        String fl = "60";
 
         HttpURLConnection con;
         BufferedReader buffer;
