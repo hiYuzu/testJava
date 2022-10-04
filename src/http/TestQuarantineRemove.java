@@ -1,7 +1,5 @@
 package http;
 
-import cn.hutool.core.date.DateTime;
-
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -9,7 +7,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * <p>HTTP DELETE接口请求测试</p>
