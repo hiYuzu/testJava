@@ -1,3 +1,4 @@
+import cn.hutool.core.lang.UUID;
 import cn.hutool.http.HttpResponse;
 import cn.hutool.http.HttpUtil;
 import cn.hutool.json.JSONObject;
@@ -13,18 +14,9 @@ import java.util.Date;
  */
 public class Main {
     public static void main(String[] args) {
-        String date = "2022-09-22";
-        String dateTime = date + " 00:00:00";
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        try {
-            Date agoDate = sdf.parse(dateTime);
-            Date nowDate = new Date();
-            int day = Math.abs((int) ((nowDate.getTime() - agoDate.getTime()) / (1000 * 3600 * 24)));
-            System.out.println(day);
-        } catch (Exception e) {
-            e.printStackTrace();
+        for (int i = 0; i < 9; i++) {
+            System.out.println(UUID.fastUUID().toString(true));
         }
     }
-
 }
 
