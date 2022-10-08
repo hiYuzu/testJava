@@ -1,3 +1,4 @@
+import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.lang.UUID;
 import cn.hutool.http.HttpResponse;
 import cn.hutool.http.HttpUtil;
@@ -14,9 +15,16 @@ import java.util.Date;
  */
 public class Main {
     public static void main(String[] args) {
-        for (int i = 0; i < 9; i++) {
-            System.out.println(UUID.fastUUID().toString(true));
+        Date oldDate = DateUtil.parseDate("2022-10-24 15:00:00");
+        int monday = 2;
+        int dayOfWeek = DateUtil.dayOfWeek(oldDate);
+        int offset = dayOfWeek - monday;
+        if (offset < 0) {
+            offset = 6;
         }
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
+        String ymdStr = simpleDateFormat.format(DateUtil.offsetDay(oldDate, -offset));
+        System.out.println(ymdStr);
     }
 }
 
