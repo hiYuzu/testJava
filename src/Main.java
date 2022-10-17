@@ -1,5 +1,6 @@
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.lang.UUID;
+import cn.hutool.core.util.StrUtil;
 import cn.hutool.http.HttpResponse;
 import cn.hutool.http.HttpUtil;
 import cn.hutool.json.JSONObject;
@@ -15,16 +16,11 @@ import java.util.Date;
  */
 public class Main {
     public static void main(String[] args) {
-        Date oldDate = DateUtil.parseDate("2022-10-24 15:00:00");
-        int monday = 2;
-        int dayOfWeek = DateUtil.dayOfWeek(oldDate);
-        int offset = dayOfWeek - monday;
-        if (offset < 0) {
-            offset = 6;
+        String taskNameSplit = "123,444,555,a";
+        String[] taskNames = taskNameSplit.split(",");
+        for (String taskName : taskNames) {
+            System.out.println(taskName);
         }
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
-        String ymdStr = simpleDateFormat.format(DateUtil.offsetDay(oldDate, -offset));
-        System.out.println(ymdStr);
     }
 }
 
