@@ -1,6 +1,7 @@
 package encrypt;
 
 import cn.hutool.core.util.HexUtil;
+import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.KeyUtil;
 import cn.hutool.crypto.SmUtil;
 import cn.hutool.crypto.asymmetric.KeyType;
@@ -37,6 +38,8 @@ public class Demo {
     public static void main(String[] args) {
         System.out.println(publicKeyInDatabase);
         System.out.println(privateKeyInDatabase);
+        System.out.println(publicKeyInDatabase.length());
+        System.out.println(privateKeyInDatabase.length());
         // 测试语句
         String content = "this is a test content";
         // 初始化
