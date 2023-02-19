@@ -21,9 +21,9 @@ public class TestDelete {
         // IP地址
         String ip = "188.1.128.218";
         // 端口
-        String port = "8084";
+        String port = "8080";
         // 证件号码
-        String identity = "130435200406051826";
+        String identity = "370786199701155455";
         // 解除类型
         String codeType = "popcode";
         // 授权码

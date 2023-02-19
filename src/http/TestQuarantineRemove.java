@@ -22,7 +22,7 @@ public class TestQuarantineRemove {
         // IP地址
         String ip = "188.1.128.218";
         // 端口
-        String port = "8084";
+        String port = "8080";
         // 证件号码
         String identity = "370786199701155455";
         // 授权码

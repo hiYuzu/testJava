@@ -21,13 +21,13 @@ public class TestGet {
         // IP地址
         String ip = "188.1.128.218";
         // 端口
-        String port = "8084";
+        String port = "8080";
         // 授权码
         String auth = "jlf5ydoq-u7dh-olrp-n2mk-a8lrc8q3nfkw";
         // 查询类型
         String codeType = "popcode";
         // 证件号码
-        String identity = "130182200509253912";
+        String identity = "370786199701155455";
         // 开始日期
         String startDate = "2022-09-29";
         // 分类
