@@ -1,3 +1,5 @@
+package agws;
+
 import cn.hutool.core.util.HexUtil;
 import cn.hutool.crypto.KeyUtil;
 import cn.hutool.crypto.SmUtil;
@@ -49,8 +51,6 @@ public class Test {
         Map<String, Object> paramMap = new HashMap<>(5);
         // 机构编码，这里以辽宁省大连市为例
         paramMap.put("orgCode", "21020000000");
-        // 操作类型，这里以添加为例，详见OperTypeEnum
-        paramMap.put("operType", OperTypeEnum.ADD.getType());
         // 加密后的数据
         paramMap.put("encStr", result);
         final int timeout = 20000;
@@ -321,38 +321,6 @@ public class Test {
 
         public static AwbBaseInfoEntity getOne() {
             return new AwbBaseInfoEntity("2022", "测试机构", "1", "1", 10, 10, 10);
-        }
-    }
-
-    /**
-     * 操作类型枚举
-     */
-    public enum OperTypeEnum {
-        /**
-         * 添加操作
-         */
-        ADD("add"),
-        /**
-         * 更新操作
-         */
-        UPD("upd"),
-        /**
-         * 删除操作
-         */
-        DEL("del");
-
-        private String type;
-
-        public String getType() {
-            return type;
-        }
-
-        public void setType(String type) {
-            this.type = type;
-        }
-
-        OperTypeEnum(String type) {
-            this.type = type;
         }
     }
 }
