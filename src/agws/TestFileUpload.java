@@ -1,23 +1,13 @@
 package agws;
 
 import cn.hutool.core.io.FileUtil;
-import cn.hutool.core.util.HexUtil;
-import cn.hutool.crypto.KeyUtil;
-import cn.hutool.crypto.SmUtil;
-import cn.hutool.crypto.asymmetric.KeyType;
-import cn.hutool.crypto.asymmetric.SM2;
 import cn.hutool.http.HttpUtil;
 import net.lingala.zip4j.ZipFile;
 import net.lingala.zip4j.model.ZipParameters;
 import net.lingala.zip4j.model.enums.AesKeyStrength;
 import net.lingala.zip4j.model.enums.EncryptionMethod;
-import org.bouncycastle.crypto.engines.SM2Engine;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.nio.charset.StandardCharsets;
-import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -61,11 +51,11 @@ public class TestFileUpload {
         // 业务主键
         paramMap.put("businessId", "40284f8185766622018576914b410000");
         // 文件名（目前仅允许pdf、ofd文件）
-        paramMap.put("fileName", "测试.pdf");
+        paramMap.put("fileName", "机构编制人数.pdf");
         // 模块名，枚举类值与系统模块名对应
         paramMap.put("moduleName", FileModuleEnum.AWB_BASE_INFO.getFieldName());
         // 字段名，枚举类值与系统填报页指标对应
-        paramMap.put("filedName", FileFieldEnum.ESTABLISHMENTS.getFieldName());
+        paramMap.put("fieldName", FileFieldEnum.ESTABLISHMENTS.getFieldName());
         // 上传文档类别
         //01 法规
         //02 规章
@@ -80,7 +70,7 @@ public class TestFileUpload {
         paramMap.put("effectTime", "2023-03-01");
         // 文档修订日期（非必填）
 //        paramMap.put("revisionTime", "2023-03-01");
-        // 加密压缩后的数据
+        // 加密压缩后的文件
         paramMap.put("zipFile", zipFile);
         final int timeout = 20000;
         String responseBody = HttpUtil.createPost(SYS_PROTOCOL + "://" + SYS_IP + ":" + SYS_PORT + SYS_METHOD)
