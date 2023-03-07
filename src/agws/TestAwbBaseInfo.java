@@ -68,23 +68,36 @@ public class TestAwbBaseInfo {
      */
     public static class AwbBaseInfoEntity {
         /**
-         * 填报时间
-         */
-        private String declareYear;
-        /**
          * 办事机构名称
          */
         private String organization_name;
         /**
          * 机构性质（字典）
+         * 01：行政机关
+         * 02：事业单位
+         * 03：参照公务员管理的事业单位
+         * 04：其他
          */
         private String organization_type;
         /**
          * 机构行政级别（字典）
+         * 01：司局（地、厅）级
+         * 02：司局（副厅）级
+         * 03：正处（县）级
+         * 04：正处（县）级
+         * 05：正科级
+         * 06：副科级
+         * 07：股级
+         * 08：其他
          */
         private String administration_level;
         /**
          * 行政主管部门（字典）
+         * 01：人民政府
+         * 02：卫生健康部门
+         * 03：住建部门
+         * 05：城市管理部门
+         * 06：其他部门
          */
         private String administration_department;
         /**
@@ -108,11 +121,20 @@ public class TestAwbBaseInfo {
          */
         private String email;
         /**
-         * 爱卫会主任行政级别（字典）
-         */
-        private String director_level2;
-        /**
          * 爱卫办主任行政级别（字典）
+         * 101：国家级正职
+         * 102：国家级副职
+         * 111：省部级正职
+         * 112：省部级副职
+         * 121：厅局级正职
+         * 122：厅局级副职
+         * 131：县处级正职
+         * 132：县处级副职
+         * 141：乡科级正职
+         * 142：乡科级副职
+         * 150：科员级
+         * 160：办事员级
+         * 199：未定职公务员
          */
         private String director_level;
         /**
@@ -147,14 +169,6 @@ public class TestAwbBaseInfo {
          * 具体承办工作内容
          */
         private String work_content;
-
-        public String getDeclareYear() {
-            return declareYear;
-        }
-
-        public void setDeclareYear(String declareYear) {
-            this.declareYear = declareYear;
-        }
 
         public String getOrganization_name() {
             return organization_name;
@@ -226,14 +240,6 @@ public class TestAwbBaseInfo {
 
         public void setEmail(String email) {
             this.email = email;
-        }
-
-        public String getDirector_level2() {
-            return director_level2;
-        }
-
-        public void setDirector_level2(String director_level2) {
-            this.director_level2 = director_level2;
         }
 
         public String getDirector_level() {
@@ -308,9 +314,8 @@ public class TestAwbBaseInfo {
             this.work_content = work_content;
         }
 
-        public AwbBaseInfoEntity(String declareYear, String organization_name, String organization_type, String administration_level, Integer establishments, Integer dutyestablishments, Integer reallyestablishments) {
+        public AwbBaseInfoEntity(String organization_name, String organization_type, String administration_level, Integer establishments, Integer dutyestablishments, Integer reallyestablishments) {
             // 以下为必填项
-            this.declareYear = declareYear;
             this.organization_name = organization_name;
             this.organization_type = organization_type;
             this.administration_level = administration_level;
@@ -320,7 +325,7 @@ public class TestAwbBaseInfo {
         }
 
         public static AwbBaseInfoEntity getOne() {
-            return new AwbBaseInfoEntity("2022", "测试机构", "1", "1", 10, 10, 10);
+            return new AwbBaseInfoEntity( "测试机构", "1", "1", 10, 10, 10);
         }
     }
 }
