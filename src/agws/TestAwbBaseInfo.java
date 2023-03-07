@@ -15,14 +15,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * <p>接口请求测试</p>
+ * <p>爱卫办基本信息填报</p>
  * <p>JDK版本：1.8</p>
  *
  * @author sinosoft
  * @version V1.0
  * @date 2023/2/19 14:51
  */
-public class Test {
+public class TestAwbBaseInfo {
     private static final String SYS_PROTOCOL = "http";
     private static final String SYS_IP = "127.0.0.1";
     private static final String SYS_PORT = "80";
@@ -48,7 +48,7 @@ public class Test {
         String result = sm2.encryptBase64(content, StandardCharsets.UTF_8, KeyType.PublicKey);
         System.out.println("密文：" + result);
         // 传参Map
-        Map<String, Object> paramMap = new HashMap<>(5);
+        Map<String, Object> paramMap = new HashMap<>(3);
         // 机构编码，这里以辽宁省大连市为例
         paramMap.put("orgCode", "21020000000");
         // 加密后的数据
