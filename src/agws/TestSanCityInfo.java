@@ -360,7 +360,10 @@ public class TestSanCityInfo {
          * 个人卫生支出占卫生总费用的比重-年份3对应的值
          */
         private BigDecimal perhealthspendrate2;
-
+        /**
+         * 甲、乙类法定传染病报告发病率（5年平均水平）
+         */
+        private BigDecimal infectillavgrateAvg;
         /**
          * 甲、乙类法定传染病报告发病率-（当前年份-1）年对应的值（如今年2023年，此值为2022年数据值）
          */
@@ -1654,6 +1657,14 @@ public class TestSanCityInfo {
         public static AgwsSanitationCityEvaluation getOne() {
             // 以辽宁省大连市为例
             return new AgwsSanitationCityEvaluation("210200000");
+        }
+
+        public BigDecimal getInfectillavgrateAvg() {
+            return infectillavgrateAvg;
+        }
+
+        public void setInfectillavgrateAvg(BigDecimal infectillavgrateAvg) {
+            this.infectillavgrateAvg = infectillavgrateAvg;
         }
     }
 }
