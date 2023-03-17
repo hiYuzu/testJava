@@ -93,10 +93,20 @@ public class TestAwbPersonInfo {
         private String administrationlevel;
         /**
          * 技术职称
+         * 01：初级专家
+         * 02：中级专家
+         * 03：高级专家
          */
         private String technictitle;
         /**
          * 最高学历
+         * 01：博士
+         * 02：硕士
+         * 04：本科
+         * 05：专科
+         * 06：高中
+         * 07：初中
+         * 08：小学
          */
         private String educationlevel;
         /**
