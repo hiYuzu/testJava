@@ -12,18 +12,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * <p>卫生城市资料评估</p>
+ * <p>卫生乡镇资料评估</p>
  * <p>JDK版本：1.8</p>
  *
  * @author sinosoft
  * @version V1.0
- * @date 2023/3/2 14:51
+ * @date 2023/3/20 13:25
  */
-public class TestSanCityFile {
+public class TestSanCountryFile {
     private static final String SYS_PROTOCOL = "http";
     private static final String SYS_IP = "127.0.0.1";
     private static final String SYS_PORT = "80";
-    private static final String SYS_METHOD = "/openApi/sanEva/cityFile";
+    private static final String SYS_METHOD = "/openApi/sanEva/countryFile";
     private static final String IIG_HEADER = "IIG-AUTH";
     private static final String IIG_AUTH = "jlf5ydoq-u7dh-olrp-n2mk-a8lrc8q3nfkw";
 
@@ -54,8 +54,8 @@ public class TestSanCityFile {
         paramMap.put("orgCode", "21020000000");
         paramMap.put("regionName", "210200000");
         // 资料类型
-        // 1：卫生城市创建；2：卫生城市复审；3：其他
-        paramMap.put("cszlpglx", "1");
+        // 1：卫生县创建；2：卫生县复审；3：其他
+        paramMap.put("xzzlpglx", "1");
         paramMap.put(FileZlpgEnum.RECOMMENDED.getKey(), zipFile1);
         paramMap.put(FileZlpgEnum.RECOMMENDED.getKeyName(), "爱卫会推荐报告.pdf");
         paramMap.put(FileZlpgEnum.OTHER_RELEVANT.getKey(), zipFile2);
@@ -89,14 +89,6 @@ public class TestSanCityFile {
          */
         EMBODIMENT("embodiment", "embodimentName"),
         /**
-         * 爱国卫生工作法规或规范性文件
-         */
-        REGULATIONS("regulations", "regulationsName"),
-        /**
-         * 爱卫办机构和人员组成
-         */
-        ORGANIZATION("organization", "organizationName"),
-        /**
          * 建成区范围、地理位置及人口
          */
         GEOGRAPHICAL("geographical", "geographicalName"),
@@ -105,13 +97,13 @@ public class TestSanCityFile {
          */
         DEVELOPMENT("development", "developmentName"),
         /**
-         * 区、街道、乡镇、社区、村名单（城市）
+         * 社区、村名单
          */
         COMMUNITIES("communities", "communitiesName"),
         /**
-         * 城市规划图和交通图（城市）
+         * 辖区规划图和交通图
          */
-        TRAFFIC_PLAN("trafficPlan", "trafficPlanName"),
+        DISTRICT_PLAN("districtPlan", "districtPlanName"),
         /**
          * 其他相关资料
          */

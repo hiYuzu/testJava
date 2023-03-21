@@ -13,10 +13,10 @@ import java.security.MessageDigest;
  */
 public class SinoEncrypt {
     public static void main(String[] args) {
-        String saltStr = "9e366826cc83cc6a";
+        String saltStr = "0fe2fe09bd741a8c";
         byte[] salt = decodeHex(saltStr);
 
-        byte[] hashPassword = sha1("123456".getBytes(), salt, 1024);
+        byte[] hashPassword = sha1("8238231@".getBytes(), salt, 1024);
         System.out.println(encodeHex(hashPassword));
         System.out.println(encodeHex(hashPassword).equals("f039435d19ae94bd53a093c7608505dc5d04d114"));
     }
