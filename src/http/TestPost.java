@@ -25,12 +25,12 @@ public class TestPost {
      */
     public static void main(String[] args) throws Exception {
         // 传参Map
-        Map<String, Object> paramMap = new HashMap<>(3);
+        Map<String, Object> paramMap = new HashMap<>(9);
         paramMap.put("startDate", "2020-01-01 00:00:00");
         paramMap.put("endDate", "2020-01-01 23:59:59");
         paramMap.put("hospitalLevel", "0");
-        paramMap.put("isCollege", "1");
-        paramMap.put("isDetail", "1");
+        paramMap.put("isCollege", "0");
+        paramMap.put("isDetail", "0");
         paramMap.put("auditState", "1");
 
         final int timeout = 20000;
