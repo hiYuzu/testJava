@@ -73,6 +73,8 @@ public class TestAwbPersonInfo {
         private String name;
         /**
          * 性别
+         * 1：男
+         * 2：女
          */
         private String gender;
         /**
