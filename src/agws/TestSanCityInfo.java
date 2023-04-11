@@ -1650,6 +1650,14 @@ public class TestSanCityInfo {
             this.stumyopia = stumyopia;
         }
 
+        public BigDecimal getInfectillavgrateAvg() {
+            return infectillavgrateAvg;
+        }
+
+        public void setInfectillavgrateAvg(BigDecimal infectillavgrateAvg) {
+            this.infectillavgrateAvg = infectillavgrateAvg;
+        }
+
         public AgwsSanitationCityEvaluation(String regionname) {
             this.regionname = regionname;
         }
@@ -1657,14 +1665,6 @@ public class TestSanCityInfo {
         public static AgwsSanitationCityEvaluation getOne() {
             // 以辽宁省大连市为例
             return new AgwsSanitationCityEvaluation("210200000");
-        }
-
-        public BigDecimal getInfectillavgrateAvg() {
-            return infectillavgrateAvg;
-        }
-
-        public void setInfectillavgrateAvg(BigDecimal infectillavgrateAvg) {
-            this.infectillavgrateAvg = infectillavgrateAvg;
         }
     }
 }

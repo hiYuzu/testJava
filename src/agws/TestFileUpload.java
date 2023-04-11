@@ -26,7 +26,6 @@ public class TestFileUpload {
     private static final String SYS_METHOD = "/openApi/file/uploadDoc";
     private static final String IIG_HEADER = "IIG-AUTH";
     private static final String IIG_AUTH = "jlf5ydoq-u7dh-olrp-n2mk-a8lrc8q3nfkw";
-    private static final String PUBLIC_KEY_STR = "3059301306072a8648ce3d020106082a811ccf5501822d03420004640bef3e59e1431c27fd36a6fbfdbf8cdecaf5b16b16b747d57f3f312ad71ad678ab3487dcb928488b092e48631e9c7d19f0a75875df13d35bdbd6e33c681c06";
 
     /**
      * 测试入口
@@ -35,8 +34,8 @@ public class TestFileUpload {
      * @throws Exception
      */
     public static void main(String[] args) throws Exception {
-        File file = FileUtil.file("E:\\1.pdf");
-        File target = FileUtil.file("E:\\1.zip");
+        File file = FileUtil.file("D:\\健康城市评估.pdf");
+        File target = FileUtil.file("D:\\健康城市评估.zip");
         ZipFile zipFile = new ZipFile(target);
         ZipParameters parameters = new ZipParameters();
         parameters.setEncryptFiles(true);
@@ -49,13 +48,13 @@ public class TestFileUpload {
         // 机构编码，这里以辽宁省大连市为例
         paramMap.put("orgCode", "21020000000");
         // 业务主键
-        paramMap.put("businessId", "40284f8185766622018576914b410000");
+        paramMap.put("businessId", "40289f1887313f5a01873142d28a0000");
         // 文件名（目前仅允许pdf、ofd文件）
-        paramMap.put("fileName", "机构编制人数.pdf");
+        paramMap.put("fileName", "国家卫生县.pdf");
         // 模块名，枚举类值与系统模块名对应
-        paramMap.put("moduleName", FileModuleEnum.AWB_BASE_INFO.getFieldName());
+        paramMap.put("moduleName", FileModuleEnum.SAN_CITY.getFieldName());
         // 字段名，枚举类值与系统填报页指标对应
-        paramMap.put("fieldName", FileFieldEnum.ESTABLISHMENTS.getFieldName());
+        paramMap.put("fieldName", FileFieldEnum.COUNTRY_COUNT.getFieldName());
         // 上传文档类别
         //01 法规
         //02 规章
