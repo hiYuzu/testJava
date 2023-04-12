@@ -108,6 +108,10 @@ public class TestSanCountryInfo {
          */
         private BigDecimal healthcommunities;
         /**
+         * 全省农村厕所卫生普及率平均水平
+         */
+        private BigDecimal healthunits;
+        /**
          * 集中式饮用水水源地水质达标率
          */
         private BigDecimal potablewaterrate;
@@ -306,6 +310,14 @@ public class TestSanCountryInfo {
 
         public void setHealthcommunities(BigDecimal healthcommunities) {
             this.healthcommunities = healthcommunities;
+        }
+
+        public BigDecimal getHealthunits() {
+            return healthunits;
+        }
+
+        public void setHealthunits(BigDecimal healthunits) {
+            this.healthunits = healthunits;
         }
 
         public BigDecimal getPotablewaterrate() {
