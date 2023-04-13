@@ -2,10 +2,6 @@ package agws;
 
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.http.HttpUtil;
-import net.lingala.zip4j.ZipFile;
-import net.lingala.zip4j.model.ZipParameters;
-import net.lingala.zip4j.model.enums.AesKeyStrength;
-import net.lingala.zip4j.model.enums.EncryptionMethod;
 
 import java.io.File;
 import java.util.HashMap;
@@ -16,7 +12,7 @@ import java.util.Map;
  * <p>JDK版本：1.8</p>
  *
  * @author sinosoft
- * @version V1.0
+ * @version V2.0
  * @date 2023/3/20 12:52
  */
 public class TestSanCountyFile {
@@ -36,29 +32,18 @@ public class TestSanCountyFile {
     public static void main(String[] args) throws Exception {
         File file1 = FileUtil.file("E:\\1.pdf");
         File file2 = FileUtil.file("E:\\2.pdf");
-        File target1 = FileUtil.file("E:\\1.zip");
-        File target2 = FileUtil.file("E:\\2.zip");
-        ZipFile zipFile1 = new ZipFile(target1);
-        ZipFile zipFile2 = new ZipFile(target2);
-        ZipParameters parameters = new ZipParameters();
-        parameters.setEncryptFiles(true);
-        parameters.setEncryptionMethod(EncryptionMethod.AES);
-        parameters.setAesKeyStrength(AesKeyStrength.KEY_STRENGTH_256);
-        zipFile1.setPassword(IIG_AUTH.toCharArray());
-        zipFile2.setPassword(IIG_AUTH.toCharArray());
-        zipFile1.addFile(file1, parameters);
-        zipFile2.addFile(file2, parameters);
         // 传参Map
         Map<String, Object> paramMap = new HashMap<>(7);
-        // 机构编码，这里以辽宁省大连市为例
-        paramMap.put("orgCode", "21020000000");
-        paramMap.put("regionName", "210200000");
+        // 机构编码，这里以山东省爱卫办为例
+        paramMap.put("orgCode", "37000000000");
+        // 地区编码，这里以山东省潍坊市潍城区为例
+        paramMap.put("regionName", "370702000");
         // 资料类型
         // 1：卫生县创建；2：卫生县复审；3：其他
         paramMap.put("cszlpglx", "1");
-        paramMap.put(FileZlpgEnum.RECOMMENDED.getKey(), zipFile1);
+        paramMap.put(FileZlpgEnum.RECOMMENDED.getKey(), file1);
         paramMap.put(FileZlpgEnum.RECOMMENDED.getKeyName(), "爱卫会推荐报告.pdf");
-        paramMap.put(FileZlpgEnum.OTHER_RELEVANT.getKey(), zipFile2);
+        paramMap.put(FileZlpgEnum.OTHER_RELEVANT.getKey(), file2);
         paramMap.put(FileZlpgEnum.OTHER_RELEVANT.getKeyName(), "其他资料.pdf");
 
         final int timeout = 20000;

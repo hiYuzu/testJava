@@ -2,10 +2,6 @@ package agws;
 
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.http.HttpUtil;
-import net.lingala.zip4j.ZipFile;
-import net.lingala.zip4j.model.ZipParameters;
-import net.lingala.zip4j.model.enums.AesKeyStrength;
-import net.lingala.zip4j.model.enums.EncryptionMethod;
 
 import java.io.File;
 import java.util.HashMap;
@@ -16,7 +12,7 @@ import java.util.Map;
  * <p>JDK版本：1.8</p>
  *
  * @author sinosoft
- * @version V1.0
+ * @version V2.0
  * @date 2023/3/2 14:51
  */
 public class TestFileUpload {
@@ -34,19 +30,11 @@ public class TestFileUpload {
      * @throws Exception
      */
     public static void main(String[] args) throws Exception {
-        File file = FileUtil.file("D:\\健康城市评估.pdf");
-        File target = FileUtil.file("D:\\健康城市评估.zip");
-        ZipFile zipFile = new ZipFile(target);
-        ZipParameters parameters = new ZipParameters();
-        parameters.setEncryptFiles(true);
-        parameters.setEncryptionMethod(EncryptionMethod.AES);
-        parameters.setAesKeyStrength(AesKeyStrength.KEY_STRENGTH_256);
-        zipFile.setPassword(IIG_AUTH.toCharArray());
-        zipFile.addFile(file, parameters);
+        File file = FileUtil.file("D:\\1.pdf");
         // 传参Map
         Map<String, Object> paramMap = new HashMap<>(15);
-        // 机构编码，这里以辽宁省大连市为例
-        paramMap.put("orgCode", "21020000000");
+        // 机构编码，这里以山东省为例
+        paramMap.put("orgCode", "37000000000");
         // 业务主键
         paramMap.put("businessId", "40289f1887313f5a01873142d28a0000");
         // 文件名（目前仅允许pdf、ofd文件）
@@ -69,8 +57,8 @@ public class TestFileUpload {
         paramMap.put("effectTime", "2023-03-01");
         // 文档修订日期（非必填）
 //        paramMap.put("revisionTime", "2023-03-01");
-        // 加密压缩后的文件
-        paramMap.put("zipFile", zipFile);
+        // 附件
+        paramMap.put("file", file);
         final int timeout = 20000;
         String responseBody = HttpUtil.createPost(SYS_PROTOCOL + "://" + SYS_IP + ":" + SYS_PORT + SYS_METHOD)
                 .header(IIG_HEADER, IIG_AUTH)
