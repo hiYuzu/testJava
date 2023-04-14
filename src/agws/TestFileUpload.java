@@ -42,7 +42,7 @@ public class TestFileUpload {
         // 模块名，枚举类值与系统模块名对应
         paramMap.put("moduleName", FileModuleEnum.SAN_CITY.getFieldName());
         // 字段名，枚举类值与系统填报页指标对应
-        paramMap.put("fieldName", FileFieldEnum.COUNTRY_COUNT.getFieldName());
+        paramMap.put("fieldName", FileFieldEnum.COUNTY_COUNT.getFieldName());
         // 上传文档类别
         //01 法规
         //02 规章
@@ -83,8 +83,13 @@ public class TestFileUpload {
         /**
          * 卫生城市评估
          */
-        COUNTRY_COUNT("国家卫生县"),
-        TOBACCO("全面控烟法律法规规定");
+        COUNTY_COUNT("国家卫生县"),
+        TOBACCO_CITY("全面控烟法律法规规定"),
+        /**
+         * 卫生县评估
+         */
+        COUNTRY_COUNT("国家卫生乡镇"),
+        TOBACCO_COUNTY("出台全面控烟的规范性文件或被市级全面控烟法律法规规定覆盖");
 
         private String fieldName;
 
@@ -108,7 +113,11 @@ public class TestFileUpload {
         /**
          * 卫生城市评估模块名
          */
-        SAN_CITY("卫生城市评估");
+        SAN_CITY("卫生城市评估"),
+        /**
+         * 卫生县评估模块名
+         */
+        SAN_COUNTY("卫生县评估");
 
         private String fieldName;
 
