@@ -10,7 +10,7 @@ import java.util.Map;
  * @version v1.0
  * @date 2023/3/26 23:05
  */
-public class TestPost {
+public class TestFlu {
     private static final String SYS_PROTOCOL = "http";
     private static final String SYS_IP = "127.0.0.1";
     private static final String SYS_PORT = "8090";
@@ -27,8 +27,8 @@ public class TestPost {
     public static void main(String[] args) throws Exception {
         // 传参Map
         Map<String, Object> paramMap = new HashMap<>(9);
-        paramMap.put("startDate", "2020-01-01 00:00:00");
-        paramMap.put("endDate", "2020-01-01 23:59:59");
+        paramMap.put("startDate", "2020-01-01");
+        paramMap.put("endDate", "2020-01-01");
         paramMap.put("hospitalLevel", "0");
         paramMap.put("isCollege", "0");
         paramMap.put("isDetail", "0");
