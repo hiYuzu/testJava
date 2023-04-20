@@ -27,8 +27,8 @@ public class TestYqjc {
     public static void main(String[] args) throws Exception {
         // 传参Map
         Map<String, Object> paramMap = new HashMap<>(9);
-        paramMap.put("startDate", "2023-04-12");
-        paramMap.put("endDate", "2023-04-13");
+        paramMap.put("startDate", "2023-04-18");
+        paramMap.put("endDate", "2023-04-19");
 
         final int timeout = 20000;
         String responseBody = HttpUtil.createPost(SYS_PROTOCOL + "://" + SYS_IP + ":" + SYS_PORT + SYS_METHOD)
