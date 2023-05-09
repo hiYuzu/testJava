@@ -12,7 +12,8 @@ import java.util.Map;
  */
 public class TestFlu {
     private static final String SYS_PROTOCOL = "http";
-    private static final String SYS_IP = "127.0.0.1";
+    private static final String SYS_IP = "192.103.31.114";
+    private static final String SYS_IP_LOCAL = "127.0.0.1";
     private static final String SYS_PORT = "8090";
     private static final String SYS_METHOD = "/openApi/getFluData";
     private static final String IIG_HEADER = "IIG-AUTH";
@@ -33,6 +34,7 @@ public class TestFlu {
         paramMap.put("isCollege", "0");
         paramMap.put("isDetail", "0");
         paramMap.put("auditState", "1");
+        paramMap.put("sectionType", "");
 
         final int timeout = 20000;
         String responseBody = HttpUtil.createPost(SYS_PROTOCOL + "://" + SYS_IP + ":" + SYS_PORT + SYS_METHOD)
