@@ -1,5 +1,10 @@
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import cn.hutool.core.util.RandomUtil;
+import cn.hutool.json.JSONUtil;
+import com.alibaba.fastjson.JSONObject;
+
+import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author hiYuzu
@@ -8,29 +13,11 @@ import java.util.Calendar;
  */
 public class Main {
     public static void main(String[] args) {
-        Test test = new Test();
-        test.setK(3);
-        System.out.println(test.getK() + test.getL());
-    }
-
-    public static class Test {
-        Integer k;
-        Integer l;
-
-        public Integer getK() {
-            return k;
-        }
-
-        public void setK(Integer k) {
-            this.k = k;
-        }
-
-        public Integer getL() {
-            return l;
-        }
-
-        public void setL(Integer l) {
-            this.l = l;
-        }
+        String text = "aaaaaa";
+        byte[] utf8Bytes = text.getBytes(StandardCharsets.UTF_8);
+        String utf8Text = new String(utf8Bytes, StandardCharsets.UTF_8);
+        String isoText = new String(utf8Bytes, StandardCharsets.ISO_8859_1);
+        System.out.println("UTF-8:::" + utf8Text);
+        System.out.println("ISO_8859_1:::" + isoText);
     }
 }
