@@ -38,7 +38,6 @@ public class Expect8 {
                 }
             }
         }
-        System.out.println(times);
         System.out.println(times / max);
     }
 }

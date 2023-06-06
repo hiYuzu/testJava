@@ -17,7 +17,7 @@ import java.util.Map;
  */
 public class TestSanCountryFile {
     private static final String SYS_PROTOCOL = "http";
-    private static final String SYS_IP = "127.0.0.1";
+    private static final String SYS_IP = "61.49.19.16";
     private static final String SYS_PORT = "80";
     private static final String SYS_METHOD = "/openApi/sanEva/countryFile";
     private static final String IIG_HEADER = "IIG-AUTH";
@@ -30,8 +30,8 @@ public class TestSanCountryFile {
      * @throws Exception
      */
     public static void main(String[] args) throws Exception {
-        File file1 = FileUtil.file("E:\\1.pdf");
-        File file2 = FileUtil.file("E:\\2.pdf");
+        File file1 = FileUtil.file("D:\\1.pdf");
+        File file2 = FileUtil.file("D:\\2.pdf");
         // 传参Map
         Map<String, Object> paramMap = new HashMap<>(7);
         // 机构编码，这里以山东省爱卫办为例
@@ -40,7 +40,7 @@ public class TestSanCountryFile {
         paramMap.put("regionName", "370702004");
         // 资料类型
         // 1：卫生县创建；2：卫生县复审；3：其他
-        paramMap.put("xzzlpglx", "1");
+        paramMap.put("xzzlpglx", "3");
         paramMap.put(FileZlpgEnum.RECOMMENDED.getKey(), file1);
         paramMap.put(FileZlpgEnum.RECOMMENDED.getKeyName(), "爱卫会推荐报告.pdf");
         paramMap.put(FileZlpgEnum.OTHER_RELEVANT.getKey(), file2);

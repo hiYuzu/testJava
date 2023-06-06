@@ -89,7 +89,11 @@ public class TestFileUpload {
          * 卫生县评估
          */
         COUNTRY_COUNT("国家卫生乡镇"),
-        TOBACCO_COUNTY("出台全面控烟的规范性文件或被市级全面控烟法律法规规定覆盖");
+        TOBACCO_COUNTY("出台全面控烟的规范性文件或被市级全面控烟法律法规规定覆盖"),
+        /**
+         * 控烟年度工作
+         */
+        TOBACCO_RESULT("控烟工作总结");
 
         private String fieldName;
 
@@ -117,7 +121,11 @@ public class TestFileUpload {
         /**
          * 卫生县评估模块名
          */
-        SAN_COUNTY("卫生县评估");
+        SAN_COUNTY("卫生县评估"),
+        /**
+         * 控烟年度工作模块名
+         */
+        TOBACCO_YEAR("控烟年度工作");
 
         private String fieldName;
 

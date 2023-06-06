@@ -35,11 +35,11 @@ public class TestYqjc {
     public static void main(String[] args) throws Exception {
         // 传参Map
         Map<String, Object> paramMap = new HashMap<>(9);
-        paramMap.put("startDate", "2023-05-18");
-        paramMap.put("endDate", "2023-05-18");
+        paramMap.put("startDate", "2023-05-25");
+        paramMap.put("endDate", "2023-06-01");
 
         final int timeout = 20000;
-        String responseBody = HttpUtil.createPost(SYS_PROTOCOL + "://" + SYS_IP + ":" + SYS_PORT + SYS_METHOD)
+        String responseBody = HttpUtil.createPost(SYS_PROTOCOL + "://" + SYS_IP_LOCAL + ":" + SYS_PORT + SYS_METHOD2)
                 .header(IIG_HEADER, IIG_AUTH)
                 .form(paramMap)
                 .timeout(timeout)
