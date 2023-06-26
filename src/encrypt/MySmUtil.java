@@ -2,7 +2,6 @@ package encrypt;
 
 import cn.hutool.core.codec.Base64Encoder;
 import cn.hutool.core.util.CharsetUtil;
-import cn.hutool.core.util.HexUtil;
 import cn.hutool.crypto.SmUtil;
 import cn.hutool.crypto.symmetric.SymmetricCrypto;
 
