@@ -7,7 +7,7 @@ import java.util.Map;
 
 /**
  * @author yuzu
- * @version v1.0
+ * @version v1.2
  * @since 2023/6/28 14:31
  */
 public class TestYqjcTnI {
@@ -30,8 +30,8 @@ public class TestYqjcTnI {
     public static void main(String[] args) throws Exception {
         // 传参Map
         Map<String, Object> paramMap = new HashMap<>(9);
-        paramMap.put("startDate", "2023-06-27");
-        paramMap.put("endDate", "2023-06-27");
+        paramMap.put("startDate", "2023-08-07 10:00:00");
+        paramMap.put("endDate", "2023-08-07 11:00:00");
 
         final int timeout = 20000;
         String responseBody = HttpUtil.createPost(SYS_PROTOCOL + "://" + SYS_IP + ":" + SYS_PORT + SYS_METHOD)
