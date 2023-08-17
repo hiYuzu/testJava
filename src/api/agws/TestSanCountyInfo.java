@@ -1,4 +1,4 @@
-package agws;
+package api.agws;
 
 import cn.hutool.core.util.HexUtil;
 import cn.hutool.crypto.KeyUtil;
@@ -15,18 +15,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * <p>卫生城市评估填报</p>
+ * <p>卫生县评估填报</p>
  * <p>JDK版本：1.8</p>
  *
  * @author hiYuzu
  * @version V1.0
- * @date 2023/3/2 10:37
+ * @date 2023/3/20 13:51
  */
-public class TestSanCityInfo {
+public class TestSanCountyInfo {
     private static final String SYS_PROTOCOL = "http";
     private static final String SYS_IP = "127.0.0.1";
     private static final String SYS_PORT = "80";
-    private static final String SYS_METHOD = "/openApi/sanEva/cityInfo";
+    private static final String SYS_METHOD = "/openApi/sanEva/countyInfo";
     private static final String IIG_HEADER = "IIG-AUTH";
     private static final String IIG_AUTH = "jlf5ydoq-u7dh-olrp-n2mk-a8lrc8q3nfkw";
     private static final String PUBLIC_KEY_STR = "3059301306072a8648ce3d020106082a811ccf5501822d03420004640bef3e59e1431c27fd36a6fbfdbf8cdecaf5b16b16b747d57f3f312ad71ad678ab3487dcb928488b092e48631e9c7d19f0a75875df13d35bdbd6e33c681c06";
@@ -39,7 +39,7 @@ public class TestSanCityInfo {
      */
     public static void main(String[] args) throws Exception {
         // JSON字符串格式
-        String content = JSONUtil.toJsonStr(AgwsSanitationCityEvaluation.getOne());
+        String content = JSONUtil.toJsonStr(AgwsSanitationCountyEvaluation.getOne());
         // SM2加密
         byte[] publicKey = HexUtil.decodeHex(PUBLIC_KEY_STR);
         SM2 sm2 = SmUtil.sm2();
@@ -64,15 +64,15 @@ public class TestSanCityInfo {
     }
 
     /**
-     * 卫生城市评估所有字段
+     * 卫生县评估所有字段
      */
-    public static class AgwsSanitationCityEvaluation {
+    public static class AgwsSanitationCountyEvaluation {
         /**
          * 行政区划编码（9位码，补0），必填
          */
         private String regionname;
         /**
-         * 国家卫生县数量
+         * 国家卫生乡镇数量
          */
         private BigDecimal countycount;
         /**
@@ -153,14 +153,6 @@ public class TestSanCityInfo {
          */
         private BigDecimal generalstreetcleaningtime;
         /**
-         * 道路机械化清扫率
-         */
-        private BigDecimal streetmechcleanrate;
-        /**
-         * 城市管理信息化覆盖率
-         */
-        private BigDecimal citymgmtinfocoverrate;
-        /**
          * 建成区绿化覆盖率
          */
         private BigDecimal greenlandcoveragerate;
@@ -177,37 +169,9 @@ public class TestSanCityInfo {
          */
         private BigDecimal domesticgarbageharmlessdisposal;
         /**
-         * 窖井盖完好率
-         */
-        private BigDecimal manholeintactrate;
-        /**
-         * 主城区回收网点覆盖率
-         */
-        private BigDecimal recoverypointcoverrate;
-        /**
-         * 城市生活污水集中收集率-年份1
-         */
-        private String year4;
-        /**
-         * 城市生活污水集中收集率-年份1对应的值
+         * 城市生活污水集中收集率
          */
         private BigDecimal domesticsewagedisposal;
-        /**
-         * 城市生活污水集中收集率-年份2
-         */
-        private String year5;
-        /**
-         * 城市生活污水集中收集率-年份2对应的值
-         */
-        private BigDecimal domesticsewagedisposal1;
-        /**
-         * 城市生活污水集中收集率-年份3
-         */
-        private String year6;
-        /**
-         * 城市生活污水集中收集率-年份3对应的值
-         */
-        private BigDecimal domesticsewagedisposal2;
         /**
          * 环境空气质量指数（AQI）不超过100的天数-年份1
          */
@@ -255,7 +219,7 @@ public class TestSanCityInfo {
         /**
          * 声功能区环境质量夜间达标率
          */
-        private BigDecimal excrementfermentativerate;
+        private BigDecimal peripheralwaterstandardrate;
         /**
          * 集中式饮用水水源地水质达标率
          */
@@ -275,7 +239,7 @@ public class TestSanCityInfo {
         /**
          * 中小学生每天校内体育活动时间
          */
-        private BigDecimal peripheralwaterstandardrate;
+        private BigDecimal healtheducation;
         /**
          * 学校眼保健操普及率
          */
@@ -283,7 +247,7 @@ public class TestSanCityInfo {
         /**
          * 中小学生近视率-年份1
          */
-        private String year10;
+        private String year13;
         /**
          * 中小学生近视率-年份1对应的值
          */
@@ -291,7 +255,7 @@ public class TestSanCityInfo {
         /**
          * 中小学生近视率-年份2
          */
-        private String year11;
+        private String year14;
         /**
          * 中小学生近视率-年份2对应的值
          */
@@ -299,7 +263,7 @@ public class TestSanCityInfo {
         /**
          * 中小学生近视率-年份3
          */
-        private String year12;
+        private String year15;
         /**
          * 中小学生近视率-年份3对应的值
          */
@@ -307,7 +271,7 @@ public class TestSanCityInfo {
         /**
          * 中小学生肥胖率-年份1
          */
-        private String year13;
+        private String year32;
         /**
          * 中小学生肥胖率-年份1对应的值
          */
@@ -315,7 +279,7 @@ public class TestSanCityInfo {
         /**
          * 中小学生肥胖率-年份2
          */
-        private String year14;
+        private String year33;
         /**
          * 中小学生肥胖率-年份2对应的值
          */
@@ -323,7 +287,7 @@ public class TestSanCityInfo {
         /**
          * 中小学生肥胖率-年份3
          */
-        private String year15;
+        private String year34;
         /**
          * 中小学生肥胖率-年份3对应的值
          */
@@ -339,7 +303,7 @@ public class TestSanCityInfo {
         /**
          * 个人卫生支出占卫生总费用的比重-年份1
          */
-        private String year16;
+        private String year35;
         /**
          * 个人卫生支出占卫生总费用的比重-年份1对应的值
          */
@@ -347,7 +311,7 @@ public class TestSanCityInfo {
         /**
          * 个人卫生支出占卫生总费用的比重-年份2
          */
-        private String year17;
+        private String year36;
         /**
          * 个人卫生支出占卫生总费用的比重-年份2对应的值
          */
@@ -355,7 +319,7 @@ public class TestSanCityInfo {
         /**
          * 个人卫生支出占卫生总费用的比重-年份3
          */
-        private String year18;
+        private String year37;
         /**
          * 个人卫生支出占卫生总费用的比重-年份3对应的值
          */
@@ -387,7 +351,7 @@ public class TestSanCityInfo {
         /**
          * 婴儿死亡率-年份1
          */
-        private String year24;
+        private String year21;
         /**
          * 婴儿死亡率-年份1对应的值
          */
@@ -395,7 +359,7 @@ public class TestSanCityInfo {
         /**
          * 婴儿死亡率-年份2
          */
-        private String year25;
+        private String year22;
         /**
          * 婴儿死亡率-年份2对应的值
          */
@@ -403,7 +367,7 @@ public class TestSanCityInfo {
         /**
          * 婴儿死亡率-年份3
          */
-        private String year26;
+        private String year23;
         /**
          * 婴儿死亡率-年份3对应的值
          */
@@ -411,7 +375,7 @@ public class TestSanCityInfo {
         /**
          * 5岁以下儿童死亡率-年份1
          */
-        private String year27;
+        private String year38;
         /**
          * 5岁以下儿童死亡率-年份1对应的值
          */
@@ -419,7 +383,7 @@ public class TestSanCityInfo {
         /**
          * 5岁以下儿童死亡率-年份2
          */
-        private String year28;
+        private String year39;
         /**
          * 5岁以下儿童死亡率-年份2对应的值
          */
@@ -427,7 +391,7 @@ public class TestSanCityInfo {
         /**
          * 5岁以下儿童死亡率-年份2
          */
-        private String year29;
+        private String year40;
         /**
          * 5岁以下儿童死亡率-年份3对应的值
          */
@@ -435,7 +399,7 @@ public class TestSanCityInfo {
         /**
          * 孕产妇死亡率-年份1
          */
-        private String year30;
+        private String year24;
         /**
          * 孕产妇死亡率-年份1对应的值
          */
@@ -443,7 +407,7 @@ public class TestSanCityInfo {
         /**
          * 孕产妇死亡率-年份2
          */
-        private String year31;
+        private String year25;
         /**
          * 孕产妇死亡率-年份2对应的值
          */
@@ -451,7 +415,7 @@ public class TestSanCityInfo {
         /**
          * 孕产妇死亡率-年份3
          */
-        private String year32;
+        private String year26;
         /**
          * 孕产妇死亡率-年份3对应的值
          */
@@ -459,7 +423,7 @@ public class TestSanCityInfo {
         /**
          * 人均预期寿命-年份1
          */
-        private String year33;
+        private String year29;
         /**
          * 人均预期寿命-年份1对应的值
          */
@@ -467,7 +431,7 @@ public class TestSanCityInfo {
         /**
          * 人均预期寿命-年份2
          */
-        private String year34;
+        private String year30;
         /**
          * 人均预期寿命-年份2对应的值
          */
@@ -475,7 +439,7 @@ public class TestSanCityInfo {
         /**
          * 人均预期寿命-年份3
          */
-        private String year35;
+        private String year31;
         /**
          * 人均预期寿命-年份3对应的值
          */
@@ -499,7 +463,7 @@ public class TestSanCityInfo {
         /**
          * 重大慢性病过早死亡率-年份1
          */
-        private String year36;
+        private String year41;
         /**
          * 重大慢性病过早死亡率-年份1对应的值
          */
@@ -507,7 +471,7 @@ public class TestSanCityInfo {
         /**
          * 重大慢性病过早死亡率-年份2
          */
-        private String year37;
+        private String year42;
         /**
          * 重大慢性病过早死亡率-年份2对应的值
          */
@@ -515,7 +479,7 @@ public class TestSanCityInfo {
         /**
          * 重大慢性病过早死亡率-年份3
          */
-        private String year38;
+        private String year43;
         /**
          * 重大慢性病过早死亡率-年份3对应的值
          */
@@ -563,7 +527,7 @@ public class TestSanCityInfo {
         /**
          * 所在地区域卫生规划要求的药师（药士）数
          */
-        private BigDecimal abovethirtyfivebloodpressurerate;
+        private BigDecimal apibelow100days;
         /**
          * 每万常住人口全科医生数
          */
@@ -769,22 +733,6 @@ public class TestSanCityInfo {
             this.generalstreetcleaningtime = generalstreetcleaningtime;
         }
 
-        public BigDecimal getStreetmechcleanrate() {
-            return streetmechcleanrate;
-        }
-
-        public void setStreetmechcleanrate(BigDecimal streetmechcleanrate) {
-            this.streetmechcleanrate = streetmechcleanrate;
-        }
-
-        public BigDecimal getCitymgmtinfocoverrate() {
-            return citymgmtinfocoverrate;
-        }
-
-        public void setCitymgmtinfocoverrate(BigDecimal citymgmtinfocoverrate) {
-            this.citymgmtinfocoverrate = citymgmtinfocoverrate;
-        }
-
         public BigDecimal getGreenlandcoveragerate() {
             return greenlandcoveragerate;
         }
@@ -817,68 +765,12 @@ public class TestSanCityInfo {
             this.domesticgarbageharmlessdisposal = domesticgarbageharmlessdisposal;
         }
 
-        public BigDecimal getManholeintactrate() {
-            return manholeintactrate;
-        }
-
-        public void setManholeintactrate(BigDecimal manholeintactrate) {
-            this.manholeintactrate = manholeintactrate;
-        }
-
-        public BigDecimal getRecoverypointcoverrate() {
-            return recoverypointcoverrate;
-        }
-
-        public void setRecoverypointcoverrate(BigDecimal recoverypointcoverrate) {
-            this.recoverypointcoverrate = recoverypointcoverrate;
-        }
-
-        public String getYear4() {
-            return year4;
-        }
-
-        public void setYear4(String year4) {
-            this.year4 = year4;
-        }
-
         public BigDecimal getDomesticsewagedisposal() {
             return domesticsewagedisposal;
         }
 
         public void setDomesticsewagedisposal(BigDecimal domesticsewagedisposal) {
             this.domesticsewagedisposal = domesticsewagedisposal;
-        }
-
-        public String getYear5() {
-            return year5;
-        }
-
-        public void setYear5(String year5) {
-            this.year5 = year5;
-        }
-
-        public BigDecimal getDomesticsewagedisposal1() {
-            return domesticsewagedisposal1;
-        }
-
-        public void setDomesticsewagedisposal1(BigDecimal domesticsewagedisposal1) {
-            this.domesticsewagedisposal1 = domesticsewagedisposal1;
-        }
-
-        public String getYear6() {
-            return year6;
-        }
-
-        public void setYear6(String year6) {
-            this.year6 = year6;
-        }
-
-        public BigDecimal getDomesticsewagedisposal2() {
-            return domesticsewagedisposal2;
-        }
-
-        public void setDomesticsewagedisposal2(BigDecimal domesticsewagedisposal2) {
-            this.domesticsewagedisposal2 = domesticsewagedisposal2;
         }
 
         public String getYear7() {
@@ -969,12 +861,12 @@ public class TestSanCityInfo {
             this.areanoiseavg = areanoiseavg;
         }
 
-        public BigDecimal getExcrementfermentativerate() {
-            return excrementfermentativerate;
+        public BigDecimal getPeripheralwaterstandardrate() {
+            return peripheralwaterstandardrate;
         }
 
-        public void setExcrementfermentativerate(BigDecimal excrementfermentativerate) {
-            this.excrementfermentativerate = excrementfermentativerate;
+        public void setPeripheralwaterstandardrate(BigDecimal peripheralwaterstandardrate) {
+            this.peripheralwaterstandardrate = peripheralwaterstandardrate;
         }
 
         public BigDecimal getPotablewaterrate() {
@@ -1009,12 +901,12 @@ public class TestSanCityInfo {
             this.healtheducationrate = healtheducationrate;
         }
 
-        public BigDecimal getPeripheralwaterstandardrate() {
-            return peripheralwaterstandardrate;
+        public BigDecimal getHealtheducation() {
+            return healtheducation;
         }
 
-        public void setPeripheralwaterstandardrate(BigDecimal peripheralwaterstandardrate) {
-            this.peripheralwaterstandardrate = peripheralwaterstandardrate;
+        public void setHealtheducation(BigDecimal healtheducation) {
+            this.healtheducation = healtheducation;
         }
 
         public BigDecimal getPublicgoodsgradedrate() {
@@ -1025,12 +917,12 @@ public class TestSanCityInfo {
             this.publicgoodsgradedrate = publicgoodsgradedrate;
         }
 
-        public String getYear10() {
-            return year10;
+        public String getYear13() {
+            return year13;
         }
 
-        public void setYear10(String year10) {
-            this.year10 = year10;
+        public void setYear13(String year13) {
+            this.year13 = year13;
         }
 
         public BigDecimal getStumyopiarate() {
@@ -1041,12 +933,12 @@ public class TestSanCityInfo {
             this.stumyopiarate = stumyopiarate;
         }
 
-        public String getYear11() {
-            return year11;
+        public String getYear14() {
+            return year14;
         }
 
-        public void setYear11(String year11) {
-            this.year11 = year11;
+        public void setYear14(String year14) {
+            this.year14 = year14;
         }
 
         public BigDecimal getStumyopiarate1() {
@@ -1057,12 +949,12 @@ public class TestSanCityInfo {
             this.stumyopiarate1 = stumyopiarate1;
         }
 
-        public String getYear12() {
-            return year12;
+        public String getYear15() {
+            return year15;
         }
 
-        public void setYear12(String year12) {
-            this.year12 = year12;
+        public void setYear15(String year15) {
+            this.year15 = year15;
         }
 
         public BigDecimal getStumyopiarate2() {
@@ -1073,12 +965,12 @@ public class TestSanCityInfo {
             this.stumyopiarate2 = stumyopiarate2;
         }
 
-        public String getYear13() {
-            return year13;
+        public String getYear32() {
+            return year32;
         }
 
-        public void setYear13(String year13) {
-            this.year13 = year13;
+        public void setYear32(String year32) {
+            this.year32 = year32;
         }
 
         public BigDecimal getStuobesityrate() {
@@ -1089,12 +981,12 @@ public class TestSanCityInfo {
             this.stuobesityrate = stuobesityrate;
         }
 
-        public String getYear14() {
-            return year14;
+        public String getYear33() {
+            return year33;
         }
 
-        public void setYear14(String year14) {
-            this.year14 = year14;
+        public void setYear33(String year33) {
+            this.year33 = year33;
         }
 
         public BigDecimal getStuobesityrate1() {
@@ -1105,12 +997,12 @@ public class TestSanCityInfo {
             this.stuobesityrate1 = stuobesityrate1;
         }
 
-        public String getYear15() {
-            return year15;
+        public String getYear34() {
+            return year34;
         }
 
-        public void setYear15(String year15) {
-            this.year15 = year15;
+        public void setYear34(String year34) {
+            this.year34 = year34;
         }
 
         public BigDecimal getStuobesityrate2() {
@@ -1137,12 +1029,12 @@ public class TestSanCityInfo {
             this.foodsaftygradedrate = foodsaftygradedrate;
         }
 
-        public String getYear16() {
-            return year16;
+        public String getYear35() {
+            return year35;
         }
 
-        public void setYear16(String year16) {
-            this.year16 = year16;
+        public void setYear35(String year35) {
+            this.year35 = year35;
         }
 
         public BigDecimal getPerhealthspendrate() {
@@ -1153,12 +1045,12 @@ public class TestSanCityInfo {
             this.perhealthspendrate = perhealthspendrate;
         }
 
-        public String getYear17() {
-            return year17;
+        public String getYear36() {
+            return year36;
         }
 
-        public void setYear17(String year17) {
-            this.year17 = year17;
+        public void setYear36(String year36) {
+            this.year36 = year36;
         }
 
         public BigDecimal getPerhealthspendrate1() {
@@ -1169,12 +1061,12 @@ public class TestSanCityInfo {
             this.perhealthspendrate1 = perhealthspendrate1;
         }
 
-        public String getYear18() {
-            return year18;
+        public String getYear37() {
+            return year37;
         }
 
-        public void setYear18(String year18) {
-            this.year18 = year18;
+        public void setYear37(String year37) {
+            this.year37 = year37;
         }
 
         public BigDecimal getPerhealthspendrate2() {
@@ -1183,6 +1075,14 @@ public class TestSanCityInfo {
 
         public void setPerhealthspendrate2(BigDecimal perhealthspendrate2) {
             this.perhealthspendrate2 = perhealthspendrate2;
+        }
+
+        public BigDecimal getInfectillavgrateAvg() {
+            return infectillavgrateAvg;
+        }
+
+        public void setInfectillavgrateAvg(BigDecimal infectillavgrateAvg) {
+            this.infectillavgrateAvg = infectillavgrateAvg;
         }
 
         public BigDecimal getInfectillavgrate() {
@@ -1200,7 +1100,6 @@ public class TestSanCityInfo {
         public void setInfectillavgrate1(BigDecimal infectillavgrate1) {
             this.infectillavgrate1 = infectillavgrate1;
         }
-
 
         public BigDecimal getInfectillavgrate2() {
             return infectillavgrate2;
@@ -1226,12 +1125,12 @@ public class TestSanCityInfo {
             this.infectillavgrate4 = infectillavgrate4;
         }
 
-        public String getYear24() {
-            return year24;
+        public String getYear21() {
+            return year21;
         }
 
-        public void setYear24(String year24) {
-            this.year24 = year24;
+        public void setYear21(String year21) {
+            this.year21 = year21;
         }
 
         public BigDecimal getInfantmortalityrate() {
@@ -1242,12 +1141,12 @@ public class TestSanCityInfo {
             this.infantmortalityrate = infantmortalityrate;
         }
 
-        public String getYear25() {
-            return year25;
+        public String getYear22() {
+            return year22;
         }
 
-        public void setYear25(String year25) {
-            this.year25 = year25;
+        public void setYear22(String year22) {
+            this.year22 = year22;
         }
 
         public BigDecimal getInfantmortalityrate1() {
@@ -1258,12 +1157,12 @@ public class TestSanCityInfo {
             this.infantmortalityrate1 = infantmortalityrate1;
         }
 
-        public String getYear26() {
-            return year26;
+        public String getYear23() {
+            return year23;
         }
 
-        public void setYear26(String year26) {
-            this.year26 = year26;
+        public void setYear23(String year23) {
+            this.year23 = year23;
         }
 
         public BigDecimal getInfantmortalityrate2() {
@@ -1274,12 +1173,12 @@ public class TestSanCityInfo {
             this.infantmortalityrate2 = infantmortalityrate2;
         }
 
-        public String getYear27() {
-            return year27;
+        public String getYear38() {
+            return year38;
         }
 
-        public void setYear27(String year27) {
-            this.year27 = year27;
+        public void setYear38(String year38) {
+            this.year38 = year38;
         }
 
         public BigDecimal getUnderfivemortalityrate() {
@@ -1290,12 +1189,12 @@ public class TestSanCityInfo {
             this.underfivemortalityrate = underfivemortalityrate;
         }
 
-        public String getYear28() {
-            return year28;
+        public String getYear39() {
+            return year39;
         }
 
-        public void setYear28(String year28) {
-            this.year28 = year28;
+        public void setYear39(String year39) {
+            this.year39 = year39;
         }
 
         public BigDecimal getUnderfivemortalityrate1() {
@@ -1306,12 +1205,12 @@ public class TestSanCityInfo {
             this.underfivemortalityrate1 = underfivemortalityrate1;
         }
 
-        public String getYear29() {
-            return year29;
+        public String getYear40() {
+            return year40;
         }
 
-        public void setYear29(String year29) {
-            this.year29 = year29;
+        public void setYear40(String year40) {
+            this.year40 = year40;
         }
 
         public BigDecimal getUnderfivemortalityrate2() {
@@ -1322,12 +1221,12 @@ public class TestSanCityInfo {
             this.underfivemortalityrate2 = underfivemortalityrate2;
         }
 
-        public String getYear30() {
-            return year30;
+        public String getYear24() {
+            return year24;
         }
 
-        public void setYear30(String year30) {
-            this.year30 = year30;
+        public void setYear24(String year24) {
+            this.year24 = year24;
         }
 
         public BigDecimal getMaternalmortalityrate() {
@@ -1338,12 +1237,12 @@ public class TestSanCityInfo {
             this.maternalmortalityrate = maternalmortalityrate;
         }
 
-        public String getYear31() {
-            return year31;
+        public String getYear25() {
+            return year25;
         }
 
-        public void setYear31(String year31) {
-            this.year31 = year31;
+        public void setYear25(String year25) {
+            this.year25 = year25;
         }
 
         public BigDecimal getMaternalmortalityrate1() {
@@ -1354,12 +1253,12 @@ public class TestSanCityInfo {
             this.maternalmortalityrate1 = maternalmortalityrate1;
         }
 
-        public String getYear32() {
-            return year32;
+        public String getYear26() {
+            return year26;
         }
 
-        public void setYear32(String year32) {
-            this.year32 = year32;
+        public void setYear26(String year26) {
+            this.year26 = year26;
         }
 
         public BigDecimal getMaternalmortalityrate2() {
@@ -1370,12 +1269,12 @@ public class TestSanCityInfo {
             this.maternalmortalityrate2 = maternalmortalityrate2;
         }
 
-        public String getYear33() {
-            return year33;
+        public String getYear29() {
+            return year29;
         }
 
-        public void setYear33(String year33) {
-            this.year33 = year33;
+        public void setYear29(String year29) {
+            this.year29 = year29;
         }
 
         public BigDecimal getPerexpectlife() {
@@ -1386,12 +1285,12 @@ public class TestSanCityInfo {
             this.perexpectlife = perexpectlife;
         }
 
-        public String getYear34() {
-            return year34;
+        public String getYear30() {
+            return year30;
         }
 
-        public void setYear34(String year34) {
-            this.year34 = year34;
+        public void setYear30(String year30) {
+            this.year30 = year30;
         }
 
         public BigDecimal getPerexpectlife1() {
@@ -1402,12 +1301,12 @@ public class TestSanCityInfo {
             this.perexpectlife1 = perexpectlife1;
         }
 
-        public String getYear35() {
-            return year35;
+        public String getYear31() {
+            return year31;
         }
 
-        public void setYear35(String year35) {
-            this.year35 = year35;
+        public void setYear31(String year31) {
+            this.year31 = year31;
         }
 
         public BigDecimal getPerexpectlife2() {
@@ -1450,12 +1349,12 @@ public class TestSanCityInfo {
             this.healthexaminationcoveragerate = healthexaminationcoveragerate;
         }
 
-        public String getYear36() {
-            return year36;
+        public String getYear41() {
+            return year41;
         }
 
-        public void setYear36(String year36) {
-            this.year36 = year36;
+        public void setYear41(String year41) {
+            this.year41 = year41;
         }
 
         public BigDecimal getDiabeticbloodsugarcontrolrate() {
@@ -1466,12 +1365,12 @@ public class TestSanCityInfo {
             this.diabeticbloodsugarcontrolrate = diabeticbloodsugarcontrolrate;
         }
 
-        public String getYear37() {
-            return year37;
+        public String getYear42() {
+            return year42;
         }
 
-        public void setYear37(String year37) {
-            this.year37 = year37;
+        public void setYear42(String year42) {
+            this.year42 = year42;
         }
 
         public BigDecimal getDiabeticbloodsugarcontrolrate1() {
@@ -1482,12 +1381,12 @@ public class TestSanCityInfo {
             this.diabeticbloodsugarcontrolrate1 = diabeticbloodsugarcontrolrate1;
         }
 
-        public String getYear38() {
-            return year38;
+        public String getYear43() {
+            return year43;
         }
 
-        public void setYear38(String year38) {
-            this.year38 = year38;
+        public void setYear43(String year43) {
+            this.year43 = year43;
         }
 
         public BigDecimal getDiabeticbloodsugarcontrolrate2() {
@@ -1578,12 +1477,12 @@ public class TestSanCityInfo {
             this.agriculturalproductsmarketsrate = agriculturalproductsmarketsrate;
         }
 
-        public BigDecimal getAbovethirtyfivebloodpressurerate() {
-            return abovethirtyfivebloodpressurerate;
+        public BigDecimal getApibelow100days() {
+            return apibelow100days;
         }
 
-        public void setAbovethirtyfivebloodpressurerate(BigDecimal abovethirtyfivebloodpressurerate) {
-            this.abovethirtyfivebloodpressurerate = abovethirtyfivebloodpressurerate;
+        public void setApibelow100days(BigDecimal apibelow100days) {
+            this.apibelow100days = apibelow100days;
         }
 
         public BigDecimal getDaytimenoiseaverage() {
@@ -1650,21 +1549,13 @@ public class TestSanCityInfo {
             this.stumyopia = stumyopia;
         }
 
-        public BigDecimal getInfectillavgrateAvg() {
-            return infectillavgrateAvg;
-        }
-
-        public void setInfectillavgrateAvg(BigDecimal infectillavgrateAvg) {
-            this.infectillavgrateAvg = infectillavgrateAvg;
-        }
-
-        public AgwsSanitationCityEvaluation(String regionname) {
+        public AgwsSanitationCountyEvaluation(String regionname) {
             this.regionname = regionname;
         }
 
-        public static AgwsSanitationCityEvaluation getOne() {
+        public static AgwsSanitationCountyEvaluation getOne() {
             // 以辽宁省大连市为例
-            return new AgwsSanitationCityEvaluation("210200000");
+            return new AgwsSanitationCountyEvaluation("210200000");
         }
     }
 }

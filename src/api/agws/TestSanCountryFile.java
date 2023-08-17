@@ -1,4 +1,4 @@
-package agws;
+package api.agws;
 
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.http.HttpUtil;
@@ -8,18 +8,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * <p>卫生县资料评估</p>
+ * <p>卫生乡镇资料评估</p>
  * <p>JDK版本：1.8</p>
  *
  * @author sinosoft
  * @version V2.0
- * @date 2023/3/20 12:52
+ * @date 2023/3/20 13:25
  */
-public class TestSanCountyFile {
+public class TestSanCountryFile {
     private static final String SYS_PROTOCOL = "http";
-    private static final String SYS_IP = "127.0.0.1";
+    private static final String SYS_IP = "61.49.19.16";
     private static final String SYS_PORT = "80";
-    private static final String SYS_METHOD = "/openApi/sanEva/countyFile";
+    private static final String SYS_METHOD = "/openApi/sanEva/countryFile";
     private static final String IIG_HEADER = "IIG-AUTH";
     private static final String IIG_AUTH = "jlf5ydoq-u7dh-olrp-n2mk-a8lrc8q3nfkw";
 
@@ -30,17 +30,17 @@ public class TestSanCountyFile {
      * @throws Exception
      */
     public static void main(String[] args) throws Exception {
-        File file1 = FileUtil.file("E:\\1.pdf");
-        File file2 = FileUtil.file("E:\\2.pdf");
+        File file1 = FileUtil.file("D:\\1.pdf");
+        File file2 = FileUtil.file("D:\\2.pdf");
         // 传参Map
         Map<String, Object> paramMap = new HashMap<>(7);
         // 机构编码，这里以山东省爱卫办为例
         paramMap.put("orgCode", "37000000000");
-        // 地区编码，这里以山东省潍坊市潍城区为例
-        paramMap.put("regionName", "370702000");
+        // 地区编码，这里以山东省潍坊市潍城区北关街道为例
+        paramMap.put("regionName", "370702004");
         // 资料类型
         // 1：卫生县创建；2：卫生县复审；3：其他
-        paramMap.put("cszlpglx", "1");
+        paramMap.put("xzzlpglx", "3");
         paramMap.put(FileZlpgEnum.RECOMMENDED.getKey(), file1);
         paramMap.put(FileZlpgEnum.RECOMMENDED.getKeyName(), "爱卫会推荐报告.pdf");
         paramMap.put(FileZlpgEnum.OTHER_RELEVANT.getKey(), file2);
@@ -74,14 +74,6 @@ public class TestSanCountyFile {
          */
         EMBODIMENT("embodiment", "embodimentName"),
         /**
-         * 爱国卫生工作法规或规范性文件
-         */
-        REGULATIONS("regulations", "regulationsName"),
-        /**
-         * 爱卫办机构和人员组成
-         */
-        ORGANIZATION("organization", "organizationName"),
-        /**
          * 建成区范围、地理位置及人口
          */
         GEOGRAPHICAL("geographical", "geographicalName"),
@@ -90,11 +82,11 @@ public class TestSanCountyFile {
          */
         DEVELOPMENT("development", "developmentName"),
         /**
-         * 街道、乡镇、社区、村名单（县）
+         * 社区、村名单
          */
-        STREETS_TOWNS("streetsTowns", "streetsTownsName"),
+        COMMUNITIES("communities", "communitiesName"),
         /**
-         * 辖区规划图和交通图（县）
+         * 辖区规划图和交通图
          */
         DISTRICT_PLAN("districtPlan", "districtPlanName"),
         /**

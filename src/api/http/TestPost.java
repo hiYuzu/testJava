@@ -1,23 +1,19 @@
-package bjcdc;
+package api.http;
 
 import cn.hutool.http.HttpUtil;
-
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author yuzu
- * @version v1.2
- * @since 2023/6/28 14:31
+ * @author hiYuzu
+ * @version v1.0
+ * @date 2023/3/26 23:05
  */
-public class TestYqjcTnI {
+public class TestPost {
     private static final String SYS_PROTOCOL = "http";
-    private static final String SYS_IP = "192.103.31.114";
-    private static final String SYS_PORT = "8091";
-    /**
-     * 个案接口方法
-     */
-    private static final String SYS_METHOD = "/openApi/getYqjcTnI";
+    private static final String SYS_IP = "127.0.0.1";
+    private static final String SYS_PORT = "8090";
+    private static final String SYS_METHOD = "/openApi/getFluData";
     private static final String IIG_HEADER = "IIG-AUTH";
     private static final String IIG_AUTH = "56bcd26b-8810-433f-9d8d-1c02688e8f71";
 
@@ -30,8 +26,12 @@ public class TestYqjcTnI {
     public static void main(String[] args) throws Exception {
         // 传参Map
         Map<String, Object> paramMap = new HashMap<>(9);
-        paramMap.put("startDate", "2023-08-07 10:00:00");
-        paramMap.put("endDate", "2023-08-07 11:00:00");
+        paramMap.put("startDate", "2020-01-01 00:00:00");
+        paramMap.put("endDate", "2020-01-01 23:59:59");
+        paramMap.put("hospitalLevel", "0");
+        paramMap.put("isCollege", "0");
+        paramMap.put("isDetail", "0");
+        paramMap.put("auditState", "1");
 
         final int timeout = 20000;
         String responseBody = HttpUtil.createPost(SYS_PROTOCOL + "://" + SYS_IP + ":" + SYS_PORT + SYS_METHOD)

@@ -1,4 +1,4 @@
-package agws;
+package api.agws;
 
 import cn.hutool.core.util.HexUtil;
 import cn.hutool.crypto.KeyUtil;

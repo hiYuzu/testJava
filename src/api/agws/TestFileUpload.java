@@ -1,4 +1,4 @@
-package agws;
+package api.agws;
 
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.http.HttpUtil;
