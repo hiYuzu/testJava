@@ -28,8 +28,8 @@ public class TestFlu {
     public static void main(String[] args) throws Exception {
         // 传参Map
         Map<String, Object> paramMap = new HashMap<>(9);
-        paramMap.put("startDate", "2023-04-18");
-        paramMap.put("endDate", "2023-04-19");
+        paramMap.put("startDate", "2023-11-18");
+        paramMap.put("endDate", "2023-11-19");
         paramMap.put("hospitalLevel", "0");
         paramMap.put("isCollege", "0");
         paramMap.put("isDetail", "0");
