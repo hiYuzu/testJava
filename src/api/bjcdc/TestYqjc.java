@@ -16,17 +16,17 @@ public class TestYqjc {
     private static final String SYS_IP_LOCAL = "127.0.0.1";
     private static final String SYS_PORT = "8091";
     /**
-     * 统计接口方法
+     * 新冠统计接口方法
      */
     private static final String SYS_METHOD = "/openApi/getYqjcData";
     /**
-     * 个案接口方法
+     * 新冠个案接口方法
      */
     private static final String SYS_METHOD2 = "/openApi/getYqjcDetail";
     /**
-     * 肠道/结核个案接口方法
+     * 其他病种个案接口方法
      */
-    private static final String SYS_METHOD3 = "/openApi/getYqjcTnI";
+    private static final String SYS_METHOD3 = "/openApi/getOtherDetail";
     private static final String IIG_HEADER = "IIG-AUTH";
     private static final String IIG_AUTH = "56bcd26b-8810-433f-9d8d-1c02688e8f71";
 
@@ -39,8 +39,8 @@ public class TestYqjc {
     public static void main(String[] args) throws Exception {
         // 传参Map
         Map<String, Object> paramMap = new HashMap<>(9);
-        paramMap.put("startDate", "2023-08-01");
-        paramMap.put("endDate", "2023-08-01");
+        paramMap.put("startDate", "2024-01-01");
+        paramMap.put("endDate", "2024-01-01");
 
         final int timeout = 20000;
         String responseBody = HttpUtil.createPost(SYS_PROTOCOL + "://" + SYS_IP + ":" + SYS_PORT + SYS_METHOD)

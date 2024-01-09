@@ -7,16 +7,19 @@ import java.util.Map;
 
 /**
  * @author yuzu
- * @version v1.0
- * @since 2023/6/11 13:45
+ * @version v1.2
+ * @since 2023/6/28 14:31
  */
-public class TestPathogen {
+public class TestYqjcAids {
     private static final String SYS_PROTOCOL = "http";
-    private static final String SYS_IP_LOCAL = "127.0.0.1";
-    private static final String SYS_PORT = "8080";
-    private static final String SYS_METHOD = "/pathogen-back/openApi/pathogen/allDataOfYear";
+    private static final String SYS_IP = "192.103.31.114";
+    private static final String SYS_PORT = "8091";
+    /**
+     * 个案接口方法
+     */
+    private static final String SYS_METHOD = "/openApi/getYqjcAids";
     private static final String IIG_HEADER = "IIG-AUTH";
-    private static final String IIG_AUTH = "7ccebf7d-a5cf-449d-a12c-faca2741fbff";
+    private static final String IIG_AUTH = "56bcd26b-8810-433f-9d8d-1c02688e8f71";
 
     /**
      * 测试入口
@@ -27,10 +30,11 @@ public class TestPathogen {
     public static void main(String[] args) throws Exception {
         // 传参Map
         Map<String, Object> paramMap = new HashMap<>(9);
-        paramMap.put("year", 2023);
+        paramMap.put("startDate", "2023-11-07 10:00:00");
+        paramMap.put("endDate", "2023-11-07 11:00:00");
 
         final int timeout = 20000;
-        String responseBody = HttpUtil.createPost(SYS_PROTOCOL + "://" + SYS_IP_LOCAL + ":" + SYS_PORT + SYS_METHOD)
+        String responseBody = HttpUtil.createPost(SYS_PROTOCOL + "://" + SYS_IP + ":" + SYS_PORT + SYS_METHOD)
                 .header(IIG_HEADER, IIG_AUTH)
                 .form(paramMap)
                 .timeout(timeout)
