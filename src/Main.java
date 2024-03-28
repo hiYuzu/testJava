@@ -1,8 +1,9 @@
-import javax.crypto.Cipher;
-import javax.crypto.SecretKey;
-import javax.crypto.spec.SecretKeySpec;
-import java.nio.charset.StandardCharsets;
-import java.util.Base64;
+import cn.hutool.core.date.DatePattern;
+import cn.hutool.core.date.DateUtil;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  * @author hiYuzu
@@ -11,6 +12,6 @@ import java.util.Base64;
  */
 public class Main {
     public static void main(String[] args) throws Exception {
-
+        System.out.println(DateUtil.format(new Date(), DatePattern.createFormatter("yyyyMMdd'T'HHmmss")));
     }
 }

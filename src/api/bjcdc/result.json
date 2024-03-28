@@ -1,0 +1,18 @@
+
+  {
+    "code": 200,
+    "data": [
+      {
+        "SEC_DATE": "2024-02-27",
+        "GROUP_0": 1006,
+        "GROUP_5": 1162,
+        "GROUP_15": 508,
+        "GROUP_25": 1759,
+        "GROUP_60": 383,
+        "GROUP_SUM": 4818,
+        "SECTION_SUM": 175333,
+        "SECTION_PER": "2.7479"
+      }
+    ],
+    "msg": "SUCCESS"
+  }
