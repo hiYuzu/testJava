@@ -1,11 +1,18 @@
 package api.http;
 
+import cn.hutool.core.util.ReflectUtil;
+import cn.hutool.http.Method;
+import cn.hutool.json.JSONUtil;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * <p>HTTP GET接口请求测试</p>
@@ -45,6 +52,52 @@ public class TestGet {
             con.setRequestProperty("IIG-AUTH", auth);
             con.setDoOutput(true);
             con.setUseCaches(false);
+            if (con.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                InputStream inputStream = con.getInputStream();
+                resultBuilder = new StringBuilder();
+                String line;
+                buffer = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
+                while ((line = buffer.readLine()) != null) {
+                    resultBuilder.append(line);
+                }
+                System.out.println(resultBuilder);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void commonGet() {
+
+    }
+
+    public static void bodyGet() {
+        String ip = "10.41.10.21";
+        String port = "8082";
+        String sysSampleNo = "360002400001";
+        Map<String, String> body = new HashMap<>();
+        body.put("sysSampleNo", sysSampleNo);
+        String bodyData = JSONUtil.toJsonStr(body);
+        HttpURLConnection con;
+        BufferedReader buffer;
+        StringBuilder resultBuilder;
+        try {
+            URL url = new URL("http://"+ ip + ":" + port + "/szpb/open/api/v1/getPathogenyData");
+            con = (HttpURLConnection) url.openConnection();
+            con.setRequestMethod("GET");
+            con.setDoOutput(true);
+            con.setRequestProperty("Content-Type", "application/json");
+            con.setRequestProperty("Content-Length", String.valueOf(bodyData.length()));
+            try (OutputStream os = con.getOutputStream()) {
+                // 当doOutput为true时，HttpURLConnection.class会在getOutputStream0()方法中将GET换为POST
+                // 写入请求体数据
+                os.write(bodyData.getBytes());
+                os.flush();
+            }
+            // 将上面的POST通过反射换回GET
+            if (Method.POST.name().equals(con.getRequestMethod())) {
+                ReflectUtil.setFieldValue(con, "method", Method.GET.name());
+            }
             if (con.getResponseCode() == HttpURLConnection.HTTP_OK) {
                 InputStream inputStream = con.getInputStream();
                 resultBuilder = new StringBuilder();

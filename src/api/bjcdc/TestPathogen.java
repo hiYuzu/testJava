@@ -2,6 +2,13 @@ package api.bjcdc;
 
 import cn.hutool.http.HttpUtil;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,5 +44,46 @@ public class TestPathogen {
                 .execute()
                 .body();
         System.out.println(responseBody);
+    }
+
+    public static void main2(String[] args) throws Exception {
+        try {
+            // 1. 创建URL对象
+            URL url = new URL(SYS_PROTOCOL + "://" + SYS_IP_LOCAL + ":" + SYS_PORT + SYS_METHOD);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+            // 2. 设置请求方法为POST
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty(IIG_HEADER, IIG_AUTH);
+            connection.setDoOutput(true);
+
+            // 3. 设置请求头
+            connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+
+            // 4. URL编码表单数据
+            String postData = "param1=" + URLEncoder.encode("value1", "UTF-8") + "&param2=" + URLEncoder.encode("value2", "UTF-8");
+
+            // 5. 写入请求体
+            try (OutputStream os = connection.getOutputStream()) {
+                byte[] input = postData.getBytes(StandardCharsets.UTF_8);
+                os.write(input, 0, input.length);
+            }
+
+            // 6. 读取响应
+            int responseCode = connection.getResponseCode();
+            System.out.println("Response Code: " + responseCode);
+
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream(), StandardCharsets.UTF_8))) {
+                StringBuilder response = new StringBuilder();
+                String responseLine;
+                while ((responseLine = br.readLine()) != null) {
+                    response.append(responseLine.trim());
+                }
+                System.out.println("Response: " + response);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
