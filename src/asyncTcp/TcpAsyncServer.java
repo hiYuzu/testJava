@@ -17,7 +17,7 @@ import java.nio.channels.SocketChannel;
  */
 
 public class TcpAsyncServer {
-    private ByteBuffer buffer = ByteBuffer.allocate(1024);
+    private final ByteBuffer buffer = ByteBuffer.allocate(1024);
     private Selector selector;
     private ServerSocketChannel channel;
     private boolean listening = false;
@@ -60,9 +60,9 @@ public class TcpAsyncServer {
         while (listening) {
             selector.select();
             // 轮询事件
-            Iterator iterator = selector.selectedKeys().iterator();
+            Iterator<SelectionKey> iterator = selector.selectedKeys().iterator();
             while (iterator.hasNext()) {
-                SelectionKey key = (SelectionKey) iterator.next();
+                SelectionKey key = iterator.next();
                 iterator.remove();
                 // 事件分类处理
                 if (key.isAcceptable()) {
@@ -73,11 +73,17 @@ public class TcpAsyncServer {
                     System.out.println("新终端已连接:" + sc.getRemoteAddress());
                 } else if (key.isReadable()) {
                     SocketChannel sc = (SocketChannel) key.channel();
-                    int recvCount = sc.read(buffer);
-                    if (recvCount > 0) {
+                    int readCount = sc.read(buffer);
+                    if (readCount > 0) {
                         byte[] arr = buffer.array();
                         sc.write(buffer);
-                        System.out.println(sc.getRemoteAddress() + "发来数据: " + new String(arr));
+                        StringBuilder sb = new StringBuilder();
+                        for (byte b : arr) {
+                            sb.append(String.format("0x%02X", b));
+                            sb.append(",");
+                        }
+                        System.out.println(sc.getRemoteAddress() + "发来数据报文：\n" + sb);
+//                        System.out.println("UTF-8编码转义结果：\n" + new String(arr, StandardCharsets.UTF_8));
                         buffer.flip();
                     } else {
                         sc.close();

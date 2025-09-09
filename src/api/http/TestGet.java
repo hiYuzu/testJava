@@ -3,6 +3,7 @@ package api.http;
 import cn.hutool.core.util.ReflectUtil;
 import cn.hutool.http.Method;
 import cn.hutool.json.JSONUtil;
+import com.alibaba.fastjson.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -25,6 +26,15 @@ import java.util.Map;
  */
 public class TestGet {
     public static void main(String[] args) throws Exception {
+        JSONObject test = new JSONObject();
+        test.put("token", "1token1");
+        test.put("clientId", "2clientId2");
+        test.put("clientSecret", "3clientSecret3");
+        System.out.println(test);
+        String clientId = "2clientId2";
+        String token = "1token1";
+        String clientSecret = "3clientSecret3";
+        System.out.println("{\"clientId\":\"" + clientId + "\",\"clientSecret\":\"" + clientSecret + "\",\"token\":\"" + token + "\"}");
         // IP地址
         String ip = "188.1.128.218";
         // 端口
