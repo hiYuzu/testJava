@@ -1,9 +1,9 @@
 package encrypt;
 
-import cn.hutool.core.util.HexUtil;
 import cn.hutool.crypto.KeyUtil;
 
 import java.security.KeyPair;
+import java.util.Base64;
 import java.util.Scanner;
 
 /**
@@ -14,22 +14,22 @@ import java.util.Scanner;
  * @date 2022/6/30 19:32
  */
 public class Sm2Util {
-    private static final String NEXT = "n";
-    public static void main(String[] args) {
-        String result = generate();
-        if (NEXT.equals(result)) {
-            main(null);
-        }
+    public static void main(String[] args) throws Exception {
+        generate();
+        String origin = "文本内容";
+        String cipher = EncryptUtil.encrypt(origin);
+        String plain = DecryptUtil.decrypt(cipher);
+        System.out.println("原文：" + origin);
+        System.out.println("密文：" + cipher);
+        System.out.println("明文：" + plain);
     }
 
-    private static String generate() {
-        System.out.println("正在生成公私钥对，请稍等...");
+    public static void generate() {
         KeyPair keyPair = KeyUtil.generateKeyPair("SM2");
-        String publicKey = HexUtil.encodeHexStr(keyPair.getPublic().getEncoded());
-        String privateKey = HexUtil.encodeHexStr(keyPair.getPrivate().getEncoded());
+        Base64.Encoder encoder = Base64.getEncoder();
+        String publicKey = encoder.encodeToString(keyPair.getPublic().getEncoded());
+        String privateKey = encoder.encodeToString(keyPair.getPrivate().getEncoded());
         System.out.println("公钥：" + publicKey);
         System.out.println("私钥：" + privateKey);
-        System.out.println("公私钥对已生成，请妥善保存。输入[n]按回车重新生成一组公私钥对，输入其他内容按回车键退出...");
-        return new Scanner(System.in).next();
     }
 }
