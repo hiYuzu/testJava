@@ -5,6 +5,7 @@ import java.security.MessageDigest;
 
 /**
  * 信用的权限管理系统加密
+ * 究极不安全
  *
  * @author yuzu
  * @version v1.0

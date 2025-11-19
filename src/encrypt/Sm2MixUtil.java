@@ -4,16 +4,17 @@ import cn.hutool.crypto.KeyUtil;
 
 import java.security.KeyPair;
 import java.util.Base64;
-import java.util.Scanner;
 
 /**
  * 生成非对称加密公私钥对
+ * 标识：SM2-->EC
+ * 曲线：sm2p256v1
  *
  * @author hiYuzu
  * @version v1.0
  * @date 2022/6/30 19:32
  */
-public class Sm2Util {
+public class Sm2MixUtil {
     public static void main(String[] args) throws Exception {
         generate();
         String origin = "文本内容";

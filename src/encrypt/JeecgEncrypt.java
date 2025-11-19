@@ -9,6 +9,10 @@ import java.nio.charset.StandardCharsets;
 import java.security.Key;
 
 /**
+ * Jeecg2自带的密码加盐加密算法
+ * PBEWithMD5AndDES
+ * 完全过时不安全
+ *
  * @author hiYuzu
  * @version v1.0
  * @date 2023/3/30 9:02

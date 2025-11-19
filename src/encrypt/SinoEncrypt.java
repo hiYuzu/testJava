@@ -7,6 +7,9 @@ import java.security.GeneralSecurityException;
 import java.security.MessageDigest;
 
 /**
+ * SHA-1加盐哈希
+ * 不可逆
+ *
  * @author hiYuzu
  * @version V1.0
  * @date 2023/1/11 18:25
