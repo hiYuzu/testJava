@@ -22,7 +22,11 @@ public class CipherUtil<T> {
 
     static {
         KeyPair keyPair = KeyUtil.generateKeyPair("SM2");
-        sm2 = new SM2(keyPair.getPrivate(), keyPair.getPublic());
+        String publicKey = Base64.getEncoder().encodeToString(keyPair.getPublic().getEncoded());
+        String privateKey = Base64.getEncoder().encodeToString(keyPair.getPrivate().getEncoded());
+        System.out.println("publicKey: " + publicKey);
+        System.out.println("privateKey: " + privateKey);
+        sm2 = new SM2(Base64.getDecoder().decode(privateKey.getBytes(StandardCharsets.UTF_8)), Base64.getDecoder().decode(publicKey.getBytes(StandardCharsets.UTF_8)));
         sm3 = new SM3();
     }
 
